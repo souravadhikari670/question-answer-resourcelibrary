@@ -1,0 +1,397 @@
+<%- include('bootstrap') %>
+<%- include('component/refresh') %>
+<style>
+    #profilePic {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #c1c1c1;
+        border-radius: 100%;
+        background-size: 100% 100%;
+    }
+
+    #btnFollower:hover {
+        color: #1287A5;
+        cursor: pointer;
+    }
+
+    #btnFollowing:hover {
+        color: #1287A5;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 600px) {
+        #profilePic {
+
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+
+        #divName {
+            text-align: center;
+        }
+    }
+</style>
+
+<body ">
+    <%- include('header') %>
+    <div class=" container-fluid mt-3 border-bottom rounded">
+    <div class="row">
+        <div class="col-md-1 mt-3">
+            <% if(user.profilepic == 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_1280.png') { %>
+            <div id="profilePic" style="background-image:url('/img/user.png')"></div>
+            <% } %>
+            <% if(user.profilepic != 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_1280.png') { %>
+            <div id="profilePic" style="background-image:url('/profile/profilepic/<%= user.profilepic %>')"></div>
+            <% } %>
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="row">
+                <div class="col-12" id="divName">
+                    <span style="font-weight:800;font-size: 25px;"><%= user.username %></span>
+
+                    <% if(auth) { %>
+                    <% if(account) { %>
+                    <button class="btn btn-sm btn-outline-secondary" data-toggle="modal"
+                        data-target="#editProfileModal">
+                        <i class="fa fa-edit"></i> Edit Profile
+                    </button>
+                    <i class="fa fa-envelope ml-1 mr-1" title="personal message" data-toggle="modal"
+                        data-target=".personalMessageModal-xl" style="font-size: 22px;color: #4C4B4B;cursor: pointer;"
+                        title="setting"></i>
+                    <i class="fa fa-cog" data-toggle="modal" data-target="#settingModal"
+                        style="font-size: 22px;color: #4C4B4B;cursor: pointer;" title="setting"></i>
+                    <% } %>
+                    <% } %>
+
+                    <% if(auth) { %>
+                    <% if( !account ) { %>
+                    <button class="btn btn-success btn-sm mt-1 ml-1 float-right" data-toggle="modal"
+                        data-target="#messageModal">message
+                    </button>
+                    <% if( flag == "no" ) { %>
+                    <button class="btn btn-sm btn-secondary float-right mt-1"
+                        onclick="follow('<%= user.username %>', event)">
+                        Follow
+                    </button>
+                    <% } %>
+                    <% if( flag == "yes" ) { %>
+                    <button class="btn btn-sm btn-secondary float-right mt-1"
+                        onclick="unfollow('<%= user.username %>', event)">
+                        unfollow
+                    </button>
+                    <% } %>
+                    <% } %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        <%= user.bio %>
+                    </p>
+                    <p>
+                        <%= user.affiliation %> <%= user.country %>
+                    </p>
+
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <strong><%= user.follower.length %></strong>
+                            <span data-toggle="modal" data-target="#followerModal"
+                                onclick="getFollower(event,'<%= user.username %>')" id="btnFollower">
+                                follower
+                            </span>
+                        </div>
+                        <div class="col-6 ">
+                            <strong><%= user.following.length %> </strong>
+                            <span data-toggle="modal" data-target="#followingModal" id="btnFollowing"
+                                onclick="getFollowing(event,'<%= user.username %>')">
+                                following</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <% if(auth) { %>
+            <% if(account) { %>
+            <div class="row">
+                <div class="col-12 mb-1 text-center mt-2">
+                    <%= user.name %>
+                </div>
+            </div>
+            <% } %>
+            <% } %>
+            <div class="row">
+                <div class="col-12 text-center my-2">
+                    <%= user.email %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 mt-3 text-center">
+
+            <div class="row mb-3">
+
+                <div class="col-1 text-center">
+                    <strong>
+                        <%= user.questionnotification.length + user.resourcenotification.length + user.researchnotification.length  %>
+                    </strong><br>
+                    <i class="fa fa-bell " style="font-size: 22px;color: #4C4B4B;cursor: pointer;"
+                        title="notification"></i>
+                </div>
+                <div class="col-1 text-center">
+                    <strong id="followquestionSpan"><%= user.followquestion.length %></strong> <br>
+                    <i class="fa fa-heart text-danger" data-toggle="modal" data-target=".followQuestionModal"
+                        style="font-size: 22px;color: #4C4B4B;cursor: pointer;"></i>
+                </div>
+                <div class="col-3 text-center">
+                    <strong><%= user.question.length %></strong><br>
+                    <a href="/api/questions/<%= user.username %>/questions" style="text-decoration: none;">Question</a>
+                </div>
+                <div class="col-3 text-center">
+                    <strong><%= user.videofile.length + user.txtfile.length %></strong><br>
+                    <a href="" style="text-decoration: none;">Resource</a>
+                </div>
+                <div class="col-3 text-center">
+                    <strong>
+                        <%= user.journal.length + user.conference.length + user.chapter.length + user.book.length + user.thesis.length + user.patent.length + user.courtcase.length %>
+                    </strong><br>
+                    <a href="/api/research/<%= user.username %>/allresearch" style="text-decoration: none;">
+                        Research
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div>
+        <% if(auth) { %>
+        <% if(account) { %>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <div class="row">
+                        <div class="col-3">
+                            <button class="btn btn-outline-secondary" data-toggle="modal"
+                                data-target=".addresearch-modal-xl">
+                                add research
+                            </button>
+                            <%- include('profilecomponent/addresearch') %>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-outline-secondary" data-toggle="modal"
+                                data-target=".addquestion-modal-xl">raise question
+                            </button>
+                            <%- include('profilecomponent/addquestion') %>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-outline-secondary" data-toggle="modal"
+                                data-target=".addresource-modal-xl">
+                                other resource
+                            </button>
+                            <%- include('profilecomponent/addresource') %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+        <% } %>
+        <% } %>
+    </div>
+
+    <!-- write message -->
+<% if(auth) { %>
+<% if(account) { %>
+    <div class="container mt-5">
+
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-sm btn-secondary float-right ml-2" 
+                onclick="postSimpleMessage(event,'<%= user.username %>')" id="btnpostSimpleMessage">
+                    Post as txt
+                </button>
+                <button class="btn btn-sm btn-secondary float-right"
+                onclick="postSimpleCode(event,'<%= user.username %>')" id="btnpostSimpleCode"
+                >
+                    Post as code
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <textarea name="simpleTextMessage"
+                     class="form-control" id="simpleTextMessage" rows="4" placeholder="write something here"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+<% } %>
+    <!-- end of write message -->
+
+    <div class="container mt-5" style="min-height: 30vh;">
+        <% user.timeline.forEach(function(time) { %>
+        <div class="row mb-1 bg-light rounded">
+            <div class="col-12">
+                <div class="row">
+                    <!-- <div class="col-1">
+                        <div class="mt-2 bg-danger" id="divTimelineStatus<%= time.id %>"
+                            style="width: 40px; height: 20px; border-radius: 3px;">
+                            <center><span class="text-light">new</span></center>
+                        </div>
+                    </div> -->
+                    <div class="col-12">
+
+
+                        <span class="p-2 text-primary" style="font-size: 12px;">
+                            <button class="btn btn-sm btn-light mr-2" disabled>
+                                <%= time.tag %>
+                            </button>
+                            <%= time.date %>
+                        </span>
+                        <span class="p-2 text-primary" style="font-size: 12px;">
+                            <% if(time.tag == 'newanswer') { %>
+                            <a href="/api/profile/find/users/<%= time.postusername %>" class="ml-2"
+                                style="text-decoration: none;">
+                                <% if( time.postusername == user.username ) { %>
+                                me
+                                <% } %>
+                                <% if( time.postusername != user.username ) { %>
+                                <%= time.postusername %>
+                                <% } %>
+                            </a>
+                            <% } %>
+
+                            <% if(time.tag != 'newanswer') { %>
+                            <a href="/api/profile/find/users/<%= time.username %>" class="ml-2"
+                                style="text-decoration: none;">
+                                <% if( time.username == user.username ) { %>
+                                me
+                                <% } %>
+                                <% if( time.username != user.username ) { %>
+                                <%= time.username %>
+                                <% } %>
+                            </a>
+                            <% } %>
+
+                        </span>
+                        <% if( time.username == user.username ) { %>
+                        <% if(time.tag == 'code' || time.tag == 'txt') { %>
+
+                            <i class="material-icons float-right mt-1" onclick="deleteSimpleMessage(event,'<%= user.username %>','<%= time._id %>')"
+                            style="font-size:23px;color:red; cursor: pointer;">cancel</i>
+
+                        <% } %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-2">
+                <% if(time.tag == 'question') { %>
+                <a href="/api/questions/<%= time.id %>/<%= time.username %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h4 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'newanswer') { %>
+                <a href="/api/questions/<%= time.id %>/<%= time.username %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h5 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'journal') { %>
+                <a href="/api/research/journal/<%= time.username %>/<%= time.id %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h5 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'conference') { %>
+                <a href="/api/research/conference/<%= time.username %>/<%= time.id %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h5 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'chapter') { %>
+                <a href="/api/research/chapter/<%= time.username %>/<%= time.id %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h5 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'book') { %>
+                <a href="/api/research/book/<%= time.username %>/<%= time.id %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h5 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'thesis') { %>
+                <a href="/api/research/thesis/<%= time.username %>/<%= time.id %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h5 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'patent') { %>
+                <a href="/api/research/patent/<%= time.username %>/<%= time.id %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h5 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'courtcase') { %>
+                <a href="/api/research/courtcase/<%= time.username %>/<%= time.id %>/<%= time.title %>"
+                    style="text-decoration: none">
+                    <h5 style="cursor: pointer;font-weight: bold" class="h5 text-dark mt-2">
+                        <%= time.title %>
+                    </h5>
+                </a>
+                <% } %>
+                <% if(time.tag == 'txt') { %>
+                    
+                    <p style="cursor: pointer;font-weight: bold" class="text-dark mt-2">
+                        <%= time.title %>
+                    </p>
+                <% } %>
+                <% if(time.tag == 'code') { %>
+                    <pre>
+                        <code class="language-css" class="mt-2">
+                            <%= time.title %>
+                        </code>
+                    </pre>
+                <% } %>
+            </div>
+        </div>
+        <% }) %>
+
+    </div>
+    <%- include('profilecomponent/editprofile') %>
+    <%- include('profilecomponent/follower') %>
+    <%- include('profilecomponent/following') %>
+    <%- include('profilecomponent/editprofile') %>
+    <%- include('profilecomponent/deleteaccount') %>
+    <%- include('profilecomponent/message') %>
+    <%- include('profilecomponent/personalMessage') %>
+    <%- include('profilecomponent/followquestionmodal') %>
+    <%- include('footer') %>
+    <script src="/js/profile/profile.js"></script>
+</body>

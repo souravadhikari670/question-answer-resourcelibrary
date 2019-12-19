@@ -1,0 +1,61 @@
+<%- include('../../../bootstrap') %>
+
+<body>
+    
+    <div class="container mt-5 mb-3 shadow-lg rounded" style="min-height: 50vh;">
+        <div class="row">
+            <div class="col-12 mt-2 mb-3 text-center" style="color: #0A3D62;">
+                <h5><%= conference.title %></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Authors : </strong>
+                <% conference.authors.forEach(function(a) { %>
+                    <%= a %>
+                <% }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publication date : </strong><%= conference.publicationdate %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Description : </strong>
+                
+                    <%= conference.description %>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Conference : </strong><%= conference.conference %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Volume : </strong><%= conference.volume %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Issue : </strong><%= conference.issue %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Pages : </strong><%= conference.pages %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publisher : </strong><%= conference.publisher %>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<%- include('../../../footer') %>

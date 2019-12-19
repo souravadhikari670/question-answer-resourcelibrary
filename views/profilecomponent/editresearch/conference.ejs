@@ -1,0 +1,60 @@
+<%- include('../../bootstrap') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-2 mb-3">
+            <strong>Title</strong>
+            <input type="text" class="form-control" id="conferenceTitle">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
+            <input type="text" class="form-control" id="conferenceAuthor">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Keywords (For example: a, b, c)</strong>
+            <input type="text" class="form-control" id="conferenceKeyword">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Abstract / Description</strong>
+            <textarea name="conferenceAbstract" class="form-control" id="conferenceAbstract" rows="6"></textarea>
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
+            <input type="text" class="form-control" id="conferenceDate">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Conference</strong>
+            <input type="text" id="conference" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Volume</strong>
+            <input type="text" id="conferenceVolume" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Issue</strong>
+            <input type="text" id="conferenceIssue" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Pages</strong>
+            <input type="text" id="conferencePage" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Publisher</strong>
+            <input type="text" id="conferencePublisher" class="form-control">
+        </div>
+        <!-- <div class="col-12 mt-2 mb-3">
+            <strong>upload pdf or doc file</strong>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="conferenceFile" aria-describedby="conferenceFile">
+                    <label class="custom-file-label" for="conferenceFile">Choose file</label>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-12 mb-3">
+            <button class="btn btn-dark" id="conferenceButton" onclick="publishConference(event)">Publish</button>
+        </div>
+    </div>
+</div>
+
+<script src="/js/profile/research/conference.js"></script>

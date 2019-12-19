@@ -1,0 +1,56 @@
+<%- include('../../../bootstrap') %>
+
+<body>
+    
+    <div class="container mt-5 mb-3 shadow-lg rounded" style="min-height: 50vh;">
+        <div class="row">
+            <div class="col-12 mt-2 mb-3 text-center" style="color: #0A3D62;">
+                <h5><%= chapter.title %></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Authors : </strong>
+                <% chapter.authors.forEach(function(a) { %>
+                    <%= a %>
+                <% }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publication date : </strong><%= chapter.publicationdate %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Description : </strong>
+                
+                    <%= chapter.description %>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Book : </strong><%= chapter.book %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Volume : </strong><%= chapter.volume %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Pages : </strong><%= chapter.pages %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publisher : </strong><%= chapter.publisher %>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<%- include('../../../footer') %>

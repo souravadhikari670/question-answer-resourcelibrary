@@ -1,0 +1,84 @@
+<style>
+    #messageProfilepicCon {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #000;
+        border-radius: 100%;
+        background-size: 100% 100%;
+    }
+</style>
+<!-- setting modal -->
+<div class="modal fade personalMessageModal-xl" tabindex="-1" role="dialog" aria-labelledby="personalMessageModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">personal message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid mt-1" style="height:80vh; overflow: scroll;">
+                    <div class="row">
+                        <% user.message.forEach(function(message, index) { %>
+                        <div class="col-12 mt-2 border-bottom">
+                            <strong>Date : </strong> <%= message.date %> <br>
+                            <strong>From : </strong>
+                            <a href="/api/profile/find/users/<%= message.from %>"><%= message.from %></a><br>
+                            <div class="col-12">
+
+                                <% if(message.message.length > 130) { %>
+                                <p>
+                                    <%= message.message.substring(0, 130) %>
+                                    <span style="cursor: pointer;" data-toggle="modal" data-target=".showfullMessage-xl"
+                                        onclick="readMore('<%= user.username %>', '<%= index %>', event)">...</span>
+                                </p>
+                                <% } %>
+                                <% if(message.message.length <= 130) { %>
+                                <p>
+                                    <%= message.message %>
+                                    <span style="cursor: pointer;color: #99AAAB;" data-toggle="modal" data-target=".showfullMessage-xl"
+                                        onclick="readMore('<%= user.username %>', '<%= index %>', event)">view</span>
+                                </p>
+                                <% } %>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- show full message -->
+
+<!-- setting modal -->
+<div class="modal fade showfullMessage-xl" tabindex="-1" role="dialog" aria-labelledby="showfullMessageLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container-fluid mt-1" style="height:80vh; overflow: scroll;">
+
+                    <div class="row">
+                        <div class="col-12 mt-3" id="pshowfullmessagedate">
+                       
+                        </div>
+                    </div>
+                    <div class="row" id="pshowfullmessagefrom">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-2">
+                            <p id="pshowfullmessage" style="font-size: 20px;"></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,247 @@
+<%- include('../../bootstrap') %>
+<%- include('../../header') %>
+<style>
+    .fa {
+        font-size: 35px;
+        cursor: pointer;
+        color: #616C6F;
+    }
+
+    #ansText {
+        font-size: 16px;
+        color: #000
+    }
+
+    @media only screen and (max-width: 600px) {
+        #heading {
+            font-size: 20px;
+        }
+
+        #quesText {
+            font-size: 30px;
+        }
+
+        #ansText {
+            font-size: 15px;
+            color: #000
+        }
+
+        #codeCon,
+        #QuesCodeCon {
+            height: 30vh;
+            overflow: scroll;
+        }
+
+        #codeCon {
+            overflow: scroll;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="container border-left border-right mt-2" style="min-height: 90vh">
+        <div class="row p-2">
+            <div class="col-1">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw d-none"
+                                    id="loaderQuesVoteup<%= question._id %>"
+                                    style="color: #2F363F; font-size: 22px;"></i>
+                                <span class="sr-only">Loading...</span>
+                                <span class="font-weight-bold ml-1" id="quesVoteup<%= question._id %>"
+                                    style="font-size: 22px;color: #6A737C;">
+                                    <%= question.upvotes.length %>
+                                </span>
+                            </div>
+                            <div class="col-6 d-flex justify-content-start">
+                                <i class="fa fa-caret-up mb-2 mt-2"
+                                    onclick="faUpQues(event, '<%= user.username %>','<%= question._id %>')"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 d-flex justify-content-start">
+                                <i class="fa fa-caret-down mb-3 mt-2"
+                                    onclick="faDownQues(event, '<%= user.username %>','<%= question._id %>')"></i>
+                            </div>
+                            <div class="col-6">
+                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw d-none"
+                                    id="loaderQuesVotedown<%= question._id %>"
+                                    style="color: #2F363F; font-size: 22px;"></i>
+                                <span class="sr-only">Loading...</span>
+                                <span class="font-weight-bold ml-1" id="quesVotedown<%= question._id %>"
+                                    style="font-size: 22px;color: #6A737C">
+                                    <%= question.downvotes.length %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9 d-flex justify-content-start">
+                <span class="mt-4" style="font-size: 25px;" id="quesText">
+                    <%= question.text %>
+                    <% if(auth) { %>
+                    <% if( follow ) { %>
+                    <i class="fa fa-heart ml-3" style="font-size: 18px; 
+                            color: #E83350;" id="qid<%= question._id %>"
+                        onclick="followQuestion(event,'<%= user.username %>','<%= question._id %>')"></i>
+                    <% } %>
+                    <% if( !follow ) { %>
+                    <i class="fa fa-heart ml-3" style="font-size: 18px;" id="qid<%= question._id %>"
+                        onclick="followQuestion(event,'<%= user.username %>','<%= question._id %>')"></i>
+                    <% } %>
+                    <% } %>
+                    <span style="font-size: 14px;"> posted by
+                        <a href="/api/profile/find/users/<%= user.username %>">
+                            <%= user.username %>
+                        </a>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <% if(question.code) {%>
+        <div class="row">
+
+            <div class="col-12 rounded mb-3 mt-2" id="QuesCodeCon">
+                <pre>
+            <code class="language-css">
+                <%= question.code %>
+            </code> 
+          </pre>
+            </div>
+        </div>
+        <% } %>
+        <div class="row">
+            <div class="col-12 mt-1 border-bottom">
+                <span style="font-size: 20px;color: #586776;">
+                    <%= question.answers.length %>
+                    Answer(s)
+                </span>
+            </div>
+        </div>
+        <% question.answers.forEach(function(ans){ %>
+        <div class="row border-bottom">
+            <div class="col-1">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw d-none" id="loaderAnsVoteup<%= ans._id %>"
+                                    style="color: #2F363F; font-size: 22px;"></i>
+                                <span class="sr-only">Loading...</span>
+                                <span class="ml-1 font-weight-bold" id="ansVoteup<%= ans._id %>"
+                                    style="font-size: 22px;color: #6A737C;">
+                                    <%= ans.upvotes.length %>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <i class="fa fa-caret-up mb-2 mt-2"
+                                    onclick="faUpAns(event,'<%= user.username %>','<%= question._id %>','<%= ans._id %>')"></i>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="fa fa-caret-down mb-3 mt-2"
+                                    onclick="faDownAns(event,'<%= user.username %>','<%= question._id %>','<%= ans._id %>')"></i>
+                            </div>
+                            <div class="col-6">
+                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw d-none"
+                                    id="loaderAnsVotedown<%= ans._id %>" style="color: #2F363F; font-size: 22px;"></i>
+                                <span class="sr-only">Loading...</span>
+                                <span class="ml-1 font-weight-bold" id="ansVotedown<%= ans._id %>"
+                                    style="font-size: 22px;color: #6A737C;">
+                                    <%= ans.downvotes.length %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-11 mt-3">
+                <h5 class="mt-4" id="ansText"><%= ans.anstext %></h5>
+                <% if(ans.anscode) {%>
+                <div class="row">
+                    <div class="col-12 rounded mb-3 mt-2" id="codeCon">
+                        <pre>
+                        <code class="language-css">
+                            <%= ans.anscode %>
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <% } %>
+                <div class="row">
+                    <div class="col-md-10 mb-3 d-flex justify-content-end">
+                        <div class="rounded" style="background-color: #DAE0E2;padding:5px">
+                            <a href="/api/profile/find/users/<%= ans.username %>" style="text-decoration: none">
+                                <%= ans.name %>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="rounded" style="background-color: #DAE0E2;padding:5px">
+                            <span style="font-size: 10px;">
+                                <%= ans.date %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+        <div class="container-fluid mt-5 mb-5 rounded shadow-lg">
+            <div class="row">
+                <div class="col-12 p-2 mb-4 d-flex justify-content-center">
+                    <span style="font-size: 200%; font-weight:bold">Post your Answer</span>
+                </div>
+            </div>
+            <div class="row d-none" id="loadCon">
+                <div class="col-12">
+                    <h4 id="loadConText" style="color: red">Loading...</h4>
+                </div>
+            </div>
+            <div class="row" id="answerTextCon">
+                <div class="col-12">
+                    <span><strong>Please type only text here : </strong></span>
+                    <textarea class="container mb-3"
+                        style="min-height: 150px; padding: 10px; border: 2px solid #c1c1c1;font-weight: 600 "
+                        id="answerText">
+            </textarea>
+                </div>
+            </div>
+            <div class="row" style="display: none" id="answerCodeCon">
+                <div class="col-12">
+                    <span><strong>Please type only Code here : </strong></span>
+                    <textarea class="container mb-3"
+                        style="min-height: 150px; padding: 10px; border: 2px solid #c1c1c1;font-weight: 600 "
+                        id="answerCode">
+            </textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mt-4 mb-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="btn btn-primary mb-2" id="btnCodeCon">Write code</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-primary mr-2 mb-2" id="btnTextCon">Close text</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mt-4 mb-4 d-flex justify-content-end">
+                    <button class="btn btn-success "
+                        onclick="postAnswer(event, '<%= user.username %>','<%= question._id %>', '<%= question.text %>')">Post
+                        Answer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../footer') %>
+    <script src="/js/profile/question/postanswer.js"></script>
+    <script src="/js/profile/question/vote.js"></script>

@@ -1,0 +1,406 @@
+<%- include('../../bootstrap') %>
+<%- include('../../header') %>
+
+
+<body>
+    <div class="container-fluid mt-2 rounded" style="min-height: 70vh">
+        <div class="row">
+            <div class="col-md-3 mt-5 border shadow-lg p-3 rounded">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                    <a class="nav-link active" id="v-pills-journal-tab" data-toggle="pill" href="#v-pills-journal"
+                        role="tab" aria-controls="v-pills-journal" aria-selected="true">Journal</a>
+                    <a class="nav-link" id="v-pills-conference-tab" data-toggle="pill" href="#v-pills-conference"
+                        role="tab" aria-controls="v-pills-conference" aria-selected="false">Conference</a>
+                    <a class="nav-link" id="v-pills-chapter-tab" data-toggle="pill" href="#v-pills-chapter" role="tab"
+                        aria-controls="v-pills-chapter" aria-selected="false">Chapter</a>
+                    <a class="nav-link" id="v-pills-book-tab" data-toggle="pill" href="#v-pills-book" role="tab"
+                        aria-controls="v-pills-book" aria-selected="false">Book</a>
+                    <a class="nav-link" id="v-pills-thesis-tab" data-toggle="pill" href="#v-pills-thesis" role="tab"
+                        aria-controls="v-pills-thesis" aria-selected="false">Thesis</a>
+                    <a class="nav-link" id="v-pills-patent-tab" data-toggle="pill" href="#v-pills-patent" role="tab"
+                        aria-controls="v-pills-patent" aria-selected="false">patent</a>
+                    <a class="nav-link" id="v-pills-courtcase-tab" data-toggle="pill" href="#v-pills-courtcase"
+                        role="tab" aria-controls="v-pills-courtcase" aria-selected="false">Court case</a>
+
+                </div>
+            </div>
+            <div class="col-md-9 mt-5">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-journal" role="tabpanel"
+                        aria-labelledby="v-pills-journal-tab">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">title</th>
+                                            <th scope="col">date</th>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <th scope="col">edit</th>
+                                            <th scope="col">delete</th>
+                                            <% } %>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% user.journal.forEach(function(journal) { %>
+                                        <tr class="text-center">
+                                            <td>
+                                                <a
+                                                    href="/api/research/journal/<%= user.username %>/<%= journal._id %>/<%= journal.title %>">
+                                                    <span>
+                                                        <%= journal.title %>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span><%= journal.date %></span>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <% if(auth) { %>
+                                                <% if(account) { %>
+                                                <i class="fa fa-pencil"
+                                                    onclick="editJournal(event,'<%= user.username %>','<%= journal._id %>')"
+                                                    data-toggle="modal" data-target=".editresearchjournal-modal-xl"
+                                                    style="cursor: pointer;" title="edit"></i>
+                                                <% } %>
+                                                <% } %>
+                                            </td>
+                                            <td class="text-center">
+                                                <% if(auth) { %>
+                                                <% if(account) { %>
+                                                <i class="fa fa-trash"
+                                                    onclick="deleteJournal(event,'<%= user.username %>','<%= journal._id %>')"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                                <% } %>
+                                                <% } %>
+                                            </td>
+
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-conference" role="tabpanel"
+                        aria-labelledby="v-pills-conference-tab">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">title</th>
+                                            <th scope="col">date</th>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <th scope="col">delete</th>
+                                            <% } %>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% user.conference.forEach(function(conference) { %>
+                                        <tr class="text-center">
+                                            <td>
+                                                <a
+                                                    href="/api/research/conference/<%= user.username %>/<%= conference._id %>/<%= conference.title %>">
+                                                    <span>
+                                                        <%= conference.title %>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span><%= conference.date %></span>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <% if(auth) { %>
+                                                <% if(account) { %>
+                                                <i class="fa fa-trash"
+                                                    onclick="deleteConference(event,'<%= user.username %>','<%= conference._id %>')"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                                <% } %>
+                                                <% } %>
+                                            </td>
+
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-chapter" role="tabpanel"
+                        aria-labelledby="v-pills-chapter-tab">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">title</th>
+                                            <th scope="col">date</th>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <th scope="col">delete</th>
+                                            <% } %>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% user.chapter.forEach(function(chapter) { %>
+                                        <tr class="text-center">
+                                            <td>
+                                                <a
+                                                    href="/api/research/chapter/<%= user.username %>/<%= chapter._id %>/<%= chapter.title %>">
+                                                    <span>
+                                                        <%= chapter.title %>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span><%= chapter.date %></span>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <% if(auth) { %>
+                                                <% if(account) { %>
+                                                <i class="fa fa-trash"
+                                                    onclick="deleteChapter(event,'<%= user.username %>','<%= chapter._id %>')"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                                <% } %>
+                                                <% } %>
+                                            </td>
+
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-book" role="tabpanel" aria-labelledby="v-pills-book-tab">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">title</th>
+                                            <th scope="col">date</th>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <th scope="col">delete</th>
+                                            <% } %>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% user.book.forEach(function(book) { %>
+                                        <tr class="text-center">
+                                            <td>
+                                                <a
+                                                    href="/api/research/book/<%= user.username %>/<%= book._id %>/<%= book.title %>">
+                                                    <span>
+                                                        <%= book.title %>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span><%= book.date %></span>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <% if(auth) { %>
+                                                <% if(account) { %>
+                                                <i class="fa fa-trash"
+                                                    onclick="deleteBook(event,'<%= user.username %>','<%= book._id %>')"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                                <% } %>
+                                                <% } %>
+                                            </td>
+
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-thesis" role="tabpanel" aria-labelledby="v-pills-thesis-tab">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">title</th>
+                                            <th scope="col">date</th>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <th scope="col">delete</th>
+                                            <% } %>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% user.thesis.forEach(function(thesis) { %>
+                                        <tr class="text-center">
+                                            <td>
+                                                <a
+                                                    href="/api/research/thesis/<%= user.username %>/<%= thesis._id %>/<%= thesis.title %>">
+                                                    <span>
+                                                        <%= thesis.title %>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span><%= thesis.date %></span>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <% if(auth) { %>
+                                                <% if(account) { %>
+                                                <i class="fa fa-trash"
+                                                    onclick="deleteThesis(event,'<%= user.username %>','<%= thesis._id %>')"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                                <% } %>
+                                                <% } %>
+                                            </td>
+
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-patent" role="tabpanel" aria-labelledby="v-pills-patent-tab">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">title</th>
+                                            <th scope="col">date</th>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <th scope="col">delete</th>
+                                            <% } %>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% user.patent.forEach(function(patent) { %>
+                                        <tr class="text-center">
+                                            <td>
+                                                <a
+                                                    href="/api/research/patent/<%= user.username %>/<%= patent._id %>/<%= patent.title %>">
+                                                    <span>
+                                                        <%= patent.title %>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span><%= patent.date %></span>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <% if(auth) { %>
+                                                <% if(account) { %>
+                                                <i class="fa fa-trash"
+                                                    onclick="deletePatent(event,'<%= user.username %>','<%= patent._id %>')"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                                <% } %>
+                                                <% } %>
+                                            </td>
+
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-courtcase" role="tabpanel"
+                        aria-labelledby="v-pills-courtcase-tab">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">title</th>
+                                            <th scope="col">date</th>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <th scope="col">delete</th>
+                                            <% } %>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% user.courtcase.forEach(function(courtcase) { %>
+                                        <tr class="text-center">
+                                            <td>
+                                                <a
+                                                    href="/api/research/courtcase/<%= user.username %>/<%= courtcase._id %>/<%= courtcase.title %>">
+                                                    <span>
+                                                        <%= courtcase.title %>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <span><%= courtcase.date %></span>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <% if(auth) { %>
+                                                <% if(account) { %>
+                                                <i class="fa fa-trash"
+                                                    onclick="deleteCourtcase(event,'<%= user.username %>','<%= courtcase._id %>')"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                                <% } %>
+                                                <% } %>
+                                            </td>
+
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<%- include('../editresearch/journal') %>
+
+
+<script src="/js/profile/research/journal.js"></script>
+<script src="/js/profile/research/conference.js"></script>
+<script src="/js/profile/research/chapter.js"></script>
+<script src="/js/profile/research/book.js"></script>
+<script src="/js/profile/research/thesis.js"></script>
+<script src="/js/profile/research/patent.js"></script>
+<script src="/js/profile/research/courtcase.js"></script>
+<%- include('../../footer') %>

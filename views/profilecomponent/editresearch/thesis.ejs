@@ -1,0 +1,43 @@
+<%- include('../../bootstrap') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-2 mb-3">
+            <strong>Title</strong>
+            <input type="text" class="form-control" id="thesisTitle">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
+            <input type="text" class="form-control" id="thesisAuthor">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Keywords (For example: a, b, c)</strong>
+            <input type="text" class="form-control" id="thesisKeyword">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Abstract / Description</strong>
+            <textarea name="thesisAbstract" class="form-control" id="thesisAbstract" rows="6"></textarea>
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Publication date (For example: 2019, 20019/12 or 2019/10/31)</strong>
+            <input type="text" class="form-control" id="thesisDate">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Institution</strong>
+            <input type="text" id="thesisInstitution" class="form-control">
+        </div>
+        <!-- <div class="col-12 mt-2 mb-3">
+            <strong>upload pdf or doc file</strong>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="thesisFile" aria-describedby="thesisFile">
+                    <label class="custom-file-label" for="thesisFile">Choose file</label>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-12 mb-3">
+            <button class="btn btn-dark" id="thesisButton" onclick="publishThesis(event)">Publish</button>
+        </div>
+    </div>
+</div>
+<script src="/js/profile/research/thesis.js"></script>

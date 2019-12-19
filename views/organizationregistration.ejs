@@ -1,0 +1,126 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col mt-2">
+            <form id="form2">
+                <div class="row">
+                    <div class="col-md-6 my-3">
+                        <strong class="text-light">Full name</strong>
+                        <input type="text" name="name2" id="name2" class="form-control">
+
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <strong class="text-light">Username</strong>
+                        <input type="text" name="username2" id="username2" class="form-control">
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 my-3">
+
+                        <strong class="text-light">Email</strong>
+                        <input type="email" name="email2" id="email2" class="form-control">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 my-3">
+                        <strong class="text-light">Affiliation</strong>
+                        <input type="text" id="affiliation2" name="affiliation2" class="form-control">
+
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <strong class="text-light">Country</strong>
+                        <input type="text" id="country2" name="country2" class="form-control">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 my-3">
+                        <select class="custom-select custom-select" id="type2">
+                            <option selected value="">Type</option>
+                            <option value="Private">Private</option>
+                            <option value="Public">Public</option>
+                            <option value="Government">Goverment</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 my-3" id="category2">
+                        <select class="custom-select custom-select">
+                            <option selected value="">Category</option>
+                            <option value="Organization">Organization</option>
+                            <option value="Society">Society</option>
+                            <option value="Journal">Journal</option>
+                            <option value="Conference">Conference</option>
+                            <option value="Academic Institute">Academic Institute</option>
+                            <option value="Research Institute">Research Institute</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="ifJournal">
+                    <div class="row">
+                        <div class="col-md-12 my-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input jCategory" id="SCI" value="SCI">
+                                <label class="custom-control-label text-light" for="SCI">SCI</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input jCategory" id="ESCI" value="ESCI">
+                                <label class="custom-control-label text-light" for="ESCI">ESCI</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input jCategory" id="SOPUS" value="SOPUS">
+                                <label class="custom-control-label text-light" for="SOPUS">SOPUS</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 my-3">
+                            <strong class="text-light">Impact Factor</strong>
+                            <input type="text" id="impactfactor2" name="impactfactor2" class="form-control">
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <strong class="text-light">H-Index</strong>
+                            <input type="text" id="hindex2" name="hindex2" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 my-3">
+                        <strong class="text-light">Password</strong>
+                        <input type="password" id="password2" name="password2" class="form-control">
+
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <strong class="text-light">Confirm password</strong>
+                        <input type="password" id="rePassword2" name="rePassword2" class="form-control">
+
+
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mb-1">
+                                <span class="text-light ml-5">Password: 5 to 30 characters which contain only
+                                    characters,
+                                    numeric
+                                    digits, underscore and first character must be a letter</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-3">
+                    <div class="form-group mb-3">
+                        <center>
+                            <button class="btn btn-success btn-lg btn-block" id="btnSignup"
+                                onclick="createOrganizationAccount(event)">
+                                Create Account
+                            </button>
+                        </center>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+<script src="/js/register/organizationregistration.js"></script>

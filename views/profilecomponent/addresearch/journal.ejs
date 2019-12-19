@@ -1,0 +1,59 @@
+<%- include('../../bootstrap') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-2 mb-3">
+            <strong>Title</strong>
+            <input type="text" class="form-control" id="journalTitle">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
+            <input type="text" class="form-control" id="journalAuthor">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Keywords (For example: a, b, c)</strong>
+            <input type="text" class="form-control" id="journalKeyword">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Abstract / Description</strong>
+            <textarea name="journalAbstract" class="form-control" id="journalAbstract" rows="6"></textarea>
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
+            <input type="text" class="form-control" id="journalDate">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Journal</strong>
+            <input type="text" id="journal" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Volume</strong>
+            <input type="text" id="journalVolume" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Issue</strong>
+            <input type="text" id="journalIssue" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Pages</strong>
+            <input type="text" id="journalPage" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Publisher</strong>
+            <input type="text" id="journalPublisher" class="form-control">
+        </div>
+        <!-- <div class="col-12 mt-2 mb-3">
+            <strong>upload pdf or doc file</strong>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="journalFile" aria-describedby="journalFile">
+                    <label class="custom-file-label" for="journalFile">Choose file</label>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-12 mb-3">
+            <button class="btn btn-dark" id="journalButton" onclick="publishJournal(event)">Publish</button>
+        </div>
+    </div>
+</div>
+<script src="/js/profile/research/journal.js"></script>

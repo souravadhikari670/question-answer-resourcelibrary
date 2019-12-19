@@ -1,0 +1,27 @@
+
+<div class="row">
+    <div class="col-md-12 mb-1 mt-2">
+        <form id="form">
+            <div class="form-group">
+                <label for="tag"><strong>Question tag ( separated by comma(,) ) : </strong></label>
+                <input type="text" name="tag" id="questiontag" class="form-control" placeholder="html,css,js">
+            </div>
+            <div class="form-group">
+                <label for="title"><strong>Type your Question : </strong></label>
+                <input type="text" name="text" id="questiontitle" class="form-control" id="title">
+            </div>
+            <div class="form-group">
+                <label for="code"><strong>Type Question Code (optional) : </strong></label>
+                <textarea name="code" class="form-control" id="questioncode" rows="10"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-dark btn-lg" id="btnPost" onclick="postQuestion(event)">
+                        Post Question
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/js/profile/question/postquestion.js"></script>

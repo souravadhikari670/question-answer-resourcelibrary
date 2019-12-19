@@ -1,0 +1,41 @@
+<%- include('../../../bootstrap') %>
+
+<body>
+    
+    <div class="container mt-5 mb-3 shadow-lg rounded" style="min-height: 50vh;">
+        <div class="row">
+            <div class="col-12 mt-2 mb-3 text-center" style="color: #0A3D62;">
+                <h5><%= thesis.title %></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Authors : </strong>
+                <% thesis.authors.forEach(function(a) { %>
+                    <%= a %>
+                <% }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publication date : </strong><%= thesis.publicationdate %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Description : </strong>
+                
+                    <%= thesis.description %>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Institution : </strong><%= thesis.institution %>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<%- include('../../../footer') %>

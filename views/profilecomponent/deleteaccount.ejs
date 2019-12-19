@@ -1,0 +1,36 @@
+
+    <!-- setting modal -->
+    <div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">danger zone</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid mt-2">
+                        <div class="row">
+                            <div class="col-12">
+                                <form id="deleteForm" autocomplete="off">
+
+                                    <label for="deletepassword"><strong>Password to Delete Account</strong></label>
+                                    <input type="password" id="deletepassword" placeholder="type your password "
+                                        class="form-control mb-3">
+
+                                    <p id="passwordError" style="color: red; font-weight:bold"></p>
+
+                                    <button class="btn btn-lg btn-danger" onclick="deleteAccount(event)">
+                                        Delete Account
+                                    </button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

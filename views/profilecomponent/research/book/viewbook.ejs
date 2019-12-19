@@ -1,0 +1,51 @@
+<%- include('../../../bootstrap') %>
+
+<body>
+    
+    <div class="container mt-5 mb-3 shadow-lg rounded" style="min-height: 50vh;">
+        <div class="row">
+            <div class="col-12 mt-2 mb-3 text-center" style="color: #0A3D62;">
+                <h5><%= book.title %></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Authors : </strong>
+                <% book.authors.forEach(function(a) { %>
+                    <%= a %>
+                <% }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publication date : </strong><%= book.publicationdate %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Description : </strong>
+                
+                <%= book.description %>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Volume : </strong><%= book.volume %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Pages : </strong><%= book.pages %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publisher : </strong><%= book.publisher %>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<%- include('../../../footer') %>

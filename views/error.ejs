@@ -1,0 +1,73 @@
+<%- include('bootstrap') %>
+
+<style>
+    #text{
+        font-weight: 900;
+        color: #fff;
+        font-size: 200px;
+    }
+    #text2{
+        color: #fff;
+        font-size: 50px;
+    }
+    .btn{
+        box-shadow: none !important;
+    }
+    #btn{
+        border-radius: 30px;
+        width: 200px;
+        padding: 15px;
+    }
+    #errorCon{
+        /* border: 1px solid #fff; */
+        width: 130px;
+        height: 130px;
+        border-radius: 100%;
+        background-image: url('/error/error.png');
+        background-size: 100% 100%;
+    }
+    @media only screen and (max-width: 600px) {
+        #text{
+        font-weight: 900;
+        color: #fff;
+        font-size: 150px;
+        }
+        #text2{
+            color: #fff;
+            font-size: 40px;
+        }
+        #btn{
+            border-radius: 30px;
+            width: 200px;
+            padding: 15px;
+        }
+    }
+</style>
+<body class="bg-dark">
+    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 mt-2 d-flex justify-content-center">
+                <div id="errorCon"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 id="text">Oops!</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-2 text-center">
+                <h1 id="text2">404 PAGE NOT FOUND</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-3 text-center">
+                <a href="/">
+                    <button class="btn btn-primary btn-lg" id="btn">Home page</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+</body>

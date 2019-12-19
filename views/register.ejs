@@ -1,0 +1,45 @@
+<!-- 
+<div class="modal fade bd-registration-modal-lg" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Register with SchoLife</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"> -->
+
+<!-- category -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user"
+      aria-selected="true">
+      User
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="organization-tab" data-toggle="tab" href="#organization" role="tab"
+      aria-controls="organization" aria-selected="false">Organization</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
+    <%- include('userregistration') %>
+  </div>
+  <div class="tab-pane fade" id="organization" role="tabpanel" aria-labelledby="organization-tab">
+    <%- include('organizationregistration') %>
+  </div>
+</div>
+<!-- end category -->
+<!-- 
+      </div>
+      <div class="modal-footer">
+        <a data-toggle="modal" data-target="#loginModal" data-dismiss="modal" aria-label="Close">
+          <span class="text-dark float-right">Already have an account</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->

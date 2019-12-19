@@ -1,0 +1,47 @@
+<%- include('../../bootstrap') %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-2 mb-3">
+            <strong>Title</strong>
+            <input type="text" class="form-control" id="courtcaseTitle">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Keywords (For example: a, b, c)</strong>
+            <input type="text" class="form-control" id="courtcaseKeyword">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Court</strong>
+            <input type="text" class="form-control" id="courtcaseCourt">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Abstract / Description</strong>
+            <textarea name="courtcaseAbstract" class="form-control" id="courtcaseAbstract" rows="6"></textarea>
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Decided date (For example: 2019, 2019/12 or 2019/10/31)</strong>
+            <input type="text" class="form-control" id="courtcaseDate">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Reporter</strong>
+            <input type="text" id="courtcaseReporter" class="form-control">
+        </div>
+        <div class="col-12 mt-2 mb-3">
+            <strong>Docket id</strong>
+            <input type="text" id="courtcaseDocketid" class="form-control">
+        </div>
+        <!-- <div class="col-12 mt-2 mb-3">
+            <strong>upload pdf or doc file</strong>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="courtcaseFile" aria-describedby="courtcaseFile">
+                    <label class="custom-file-label" for="courtcaseFile">Choose file</label>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-12 mb-3">
+            <button class="btn btn-dark" id="courtcaseButton" onclick="publishCourtcase(event)">Publish</button>
+        </div>
+    </div>
+</div>
+<script src="/js/profile/research/courtcase.js"></script>

@@ -1,0 +1,61 @@
+<%- include('../../../bootstrap') %>
+
+<body>
+    
+    <div class="container mt-5 mb-3 shadow-lg rounded" style="min-height: 50vh;">
+        <div class="row">
+            <div class="col-12 mt-2 mb-3 text-center" style="color: #0A3D62;">
+                <h5><%= journal.title %></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Authors : </strong>
+                <% journal.authors.forEach(function(a) { %>
+                    <%= a %>
+                <% }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publication date : </strong><%= journal.publicationdate %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Description : </strong>
+                
+                    <%= journal.description %>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Journal : </strong><%= journal.journal %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Volume : </strong><%= journal.volume %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Issue : </strong><%= journal.issue %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Pages : </strong><%= journal.pages %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <strong>Publisher : </strong><%= journal.publisher %>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<%- include('../../../footer') %>

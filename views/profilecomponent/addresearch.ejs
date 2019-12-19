@@ -1,0 +1,87 @@
+<%- include('../bootstrap') %>
+
+<!-- Modal -->
+<div class="modal fade addresearch-modal-xl" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="addresearchLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">add research</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-journal-tab" data-toggle="pill" href="#pills-journal"
+                                        role="tab" aria-controls="pills-journal" aria-selected="true">Journal</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-conference-tab" data-toggle="pill" href="#pills-conference"
+                                        role="tab" aria-controls="pills-conference" aria-selected="false">Conference</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-chapter-tab" data-toggle="pill" href="#pills-chapter"
+                                        role="tab" aria-controls="pills-chapter" aria-selected="false">Chapter</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-book-tab" data-toggle="pill" href="#pills-book"
+                                        role="tab" aria-controls="pills-book" aria-selected="false">Book</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-thesis-tab" data-toggle="pill" href="#pills-thesis"
+                                        role="tab" aria-controls="pills-thesis" aria-selected="false">Thesis</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-patent-tab" data-toggle="pill" href="#pills-patent"
+                                        role="tab" aria-controls="pills-patent" aria-selected="false">Patent</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-courtcase-tab" data-toggle="pill" href="#pills-courtcase"
+                                        role="tab" aria-controls="pills-courtcase" aria-selected="false">Court case</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-journal" role="tabpanel"
+                                    aria-labelledby="pills-journal-tab">
+                                    <%- include('addresearch/journal') %>
+                                </div>
+                                <div class="tab-pane fade" id="pills-conference" role="tabpanel"
+                                    aria-labelledby="pills-conference-tab">
+                                    <%- include('addresearch/conference') %>
+                                </div>
+                                <div class="tab-pane fade" id="pills-chapter" role="tabpanel"
+                                    aria-labelledby="pills-chapter-tab">
+                                    <%- include('addresearch/chapter') %>
+                                </div>
+                                <div class="tab-pane fade" id="pills-book" role="tabpanel"
+                                    aria-labelledby="pills-book-tab">
+                                    <%- include('addresearch/book') %>
+                                </div>
+                                <div class="tab-pane fade" id="pills-thesis" role="tabpanel"
+                                    aria-labelledby="pills-thesis-tab">
+                                    <%- include('addresearch/thesis') %>
+                                </div>
+                                <div class="tab-pane fade" id="pills-patent" role="tabpanel"
+                                    aria-labelledby="pills-patent-tab">
+                                    <%- include('addresearch/patent') %>
+                                </div>
+                                <div class="tab-pane fade" id="pills-courtcase" role="tabpanel"
+                                    aria-labelledby="pills-courtcase-tab">
+                                    <%- include('addresearch/courtcase') %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

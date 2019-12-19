@@ -1,0 +1,19 @@
+<%- include('bootstrap') %>
+<div class="container rounded p-4 shadow-lg mt-5" style="min-height:45vh">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h4>Activate Account</h4>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mb-3">
+            <form id="form">
+            <input type="text" class="form-control mb-3" id="signupCode" placeholder="Please Enter your account activation code">
+            <button class="btn btn-lg btn-primary" id="btnActive" onclick="formSubmit(event)">Activate</button>
+            <button class="btn btn-danger btn-sm ml-4" onclick="reSendCode(event)">Resend Code</button>
+          </form>
+          </div>
+        </div>
+    </div>
+<script src="/js/activator/activator.js"></script>
+<%- include('footer') %>
