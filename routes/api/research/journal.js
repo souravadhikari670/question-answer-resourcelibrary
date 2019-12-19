@@ -128,7 +128,7 @@ router.post('/delete',
 
     })
 
-//delete journal
+//edit journal
 router.post('/edit',
     passport.authenticate('jwt', {
         session: false,
@@ -151,7 +151,8 @@ router.post('/edit',
             })
 
     })
-//delete journal
+
+//edit post journal
 router.post('/edit/post',
     passport.authenticate('jwt', {
         session: false,

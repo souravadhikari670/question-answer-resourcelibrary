@@ -77,6 +77,100 @@ passport.authenticate('jwt',{session:false,failureRedirect:'/sessionexpire'})
 
 })
 
+
+
+
+
+//edit chapter
+router.post('/edit',
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+
+        User.findOne({
+                username: req.body.username
+            })
+            .then((user) => {
+
+                const editCourtcase = user.courtcase
+                    .map(item => item._id)
+                    .indexOf(req.body.id)
+
+                res.send({
+                    courtcase: user.courtcase[editCourtcase]
+                })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    })
+
+
+//edit post conference
+router.post('/edit/post',
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+
+        User.findOne({
+                username: req.user.username
+            })
+            .then((user) => {
+
+                const editCourtcaseIndex = user.courtcase
+                    .map(item => item._id)
+                    .indexOf(req.body.id)
+
+                user.courtcase[editCourtcaseIndex].title = req.body.title
+            
+                if (typeof req.body.keyword !== undefined) {
+                    user.courtcase[editCourtcaseIndex].keyword = req.body.keyword.split(',')
+                }
+                user.courtcase[editCourtcaseIndex].description = req.body.description
+                user.courtcase[editCourtcaseIndex].decideddate = req.body.decideddate
+                user.courtcase[editCourtcaseIndex].court = req.body.court
+                user.courtcase[editCourtcaseIndex].reporter = req.body.reporter
+                user.courtcase[editCourtcaseIndex].docketid = req.body.docketid
+                var date = new Date
+                user.courtcase[editCourtcaseIndex].date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+
+                const editCourtcaseIndexTimeline = user.timeline
+                    .map(item => item.id)
+                    .indexOf(req.body.id)
+                user.timeline[editCourtcaseIndexTimeline].id = req.body.id
+                user.timeline[editCourtcaseIndexTimeline].tag = 'courtcase'
+                user.timeline[editCourtcaseIndexTimeline].title = req.body.title
+                user.timeline[editCourtcaseIndexTimeline].username = req.user.username
+                user.timeline[editCourtcaseIndexTimeline].date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+                user.save()
+                    .then(() => {
+
+                        res.send({
+                            success: true
+                        })
+
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    })
+
+
+
+
+
 //delete journal
 router.post('/delete',
 passport.authenticate('jwt',{session:false,failureRedirect:'/sessionexpire'})

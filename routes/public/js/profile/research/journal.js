@@ -151,10 +151,10 @@ function publishEditJournal(event){
                     id:$('#ejournalId').val()
                 },
                 beforeSend: function(){
-                    $('#journalButton').attr('disabled','disabled')
+                    $('#ejournalButton').attr('disabled','disabled')
                 },
                 success: function(responce){
-                    $('#journalButton').removeAttr('disabled')
+                    $('#ejournalButton').removeAttr('disabled')
                     if(responce.success == true){
                         location.reload()
                     }

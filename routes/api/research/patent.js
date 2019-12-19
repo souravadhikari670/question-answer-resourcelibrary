@@ -10,138 +10,239 @@ const User = require('../../../modal/User')
 //post journals
 //this is private route
 router.post('/',
-passport.authenticate('jwt',{session:false,failureRedirect:'/sessionexpire'})
-,(req,res)=>{
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
 
-    const newPatent = {}
-    newPatent.title = req.body.title
-    if (typeof req.body.inventors !== undefined) {
-        newPatent.inventors = req.body.inventors.split(',')
-    }
-    if (typeof req.body.keyword !== undefined) {
-        newPatent.keyword = req.body.keyword.split(',')
-    }
-    newPatent.description = req.body.description
-    newPatent.publicationdate = req.body.publicationdate
-    newPatent.patentoffice = req.body.patentoffice
-    newPatent.patentnumber = req.body.patentnumber
-    newPatent.applicationnumber = req.body.applicationnumber
-    var date = new Date
-    newPatent.date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
-    User.findById(req.user.id)
-    .then((user)=>{
-        user.patent.unshift(newPatent)
-        user.save()
-        .then((authuser)=>{
-           
-            for (i = 0; i < authuser.follower.length; i++) {
-                User.findOne({
-                        username: authuser.follower[i].username
-                })
-                .then((user) => {
-                    const c = {}
-                    c.id = authuser.patent[0]._id
-                    c.tag = 'patent'
-                    c.title = authuser.patent[0].title
-                    c.username = authuser.username
-                    c.date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
-                    user.researchnotification.unshift(c)
-                    user.timeline.unshift(c)
-                    user.save()
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-            }
-            const t = {}
-            t.id = authuser.patent[0]._id
-            t.tag = 'patent'
-            t.title = authuser.patent[0].title
-            t.username = authuser.username
-            t.date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
-            authuser.timeline.unshift(t)
-            authuser.save()
-            .then(()=>{
-                res.send({
-                    success: true
-                })
+        const newPatent = {}
+        newPatent.title = req.body.title
+        if (typeof req.body.inventors !== undefined) {
+            newPatent.inventors = req.body.inventors.split(',')
+        }
+        if (typeof req.body.keyword !== undefined) {
+            newPatent.keyword = req.body.keyword.split(',')
+        }
+        newPatent.description = req.body.description
+        newPatent.publicationdate = req.body.publicationdate
+        newPatent.patentoffice = req.body.patentoffice
+        newPatent.patentnumber = req.body.patentnumber
+        newPatent.applicationnumber = req.body.applicationnumber
+        var date = new Date
+        newPatent.date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+        User.findById(req.user.id)
+            .then((user) => {
+                user.patent.unshift(newPatent)
+                user.save()
+                    .then((authuser) => {
+
+                        for (i = 0; i < authuser.follower.length; i++) {
+                            User.findOne({
+                                    username: authuser.follower[i].username
+                                })
+                                .then((user) => {
+                                    const c = {}
+                                    c.id = authuser.patent[0]._id
+                                    c.tag = 'patent'
+                                    c.title = authuser.patent[0].title
+                                    c.username = authuser.username
+                                    c.date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+                                    user.researchnotification.unshift(c)
+                                    user.timeline.unshift(c)
+                                    user.save()
+                                })
+                                .catch((error) => {
+                                    console.log(error)
+                                })
+                        }
+                        const t = {}
+                        t.id = authuser.patent[0]._id
+                        t.tag = 'patent'
+                        t.title = authuser.patent[0].title
+                        t.username = authuser.username
+                        t.date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+                        authuser.timeline.unshift(t)
+                        authuser.save()
+                            .then(() => {
+                                res.send({
+                                    success: true
+                                })
+                            })
+                            .catch((error) => {
+                                console.log(error)
+                            })
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error)
             })
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-    })
-    .catch((error)=>{
-        console.log(error)
+
     })
 
-})
+
+
+//edit patent
+router.post('/edit',
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+
+        User.findOne({
+                username: req.body.username
+            })
+            .then((user) => {
+
+                const editPatent = user.patent
+                    .map(item => item._id)
+                    .indexOf(req.body.id)
+                res.send({
+                    patent: user.patent[editPatent]
+                })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    })
+
+//edit post patent
+router.post('/edit/post',
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+
+        User.findOne({
+                username: req.user.username
+            })
+            .then((user) => {
+
+                const editPatentIndex = user.patent
+                    .map(item => item._id)
+                    .indexOf(req.body.id)
+
+                user.patent[editPatentIndex].title = req.body.title
+                if (typeof req.body.inventors !== undefined) {
+                    user.patent[editPatentIndex].inventors = req.body.inventors.split(',')
+                }
+                if (typeof req.body.keyword !== undefined) {
+                    user.patent[editPatentIndex].keyword = req.body.keyword.split(',')
+                }
+                user.patent[editPatentIndex].description = req.body.description
+                user.patent[editPatentIndex].publicationdate = req.body.publicationdate
+                user.patent[editPatentIndex].patentoffice = req.body.patentoffice
+                user.patent[editPatentIndex].patentnumber = req.body.patentnumber
+                user.patent[editPatentIndex].applicationnumber = req.body.applicationnumber
+      
+                var date = new Date
+                user.patent[editPatentIndex].date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+
+                const editPatentIndexTimeline = user.timeline
+                    .map(item => item.id)
+                    .indexOf(req.body.id)
+                user.timeline[editPatentIndexTimeline].id = req.body.id
+                user.timeline[editPatentIndexTimeline].tag = 'patent'
+                user.timeline[editPatentIndexTimeline].title = req.body.title
+                user.timeline[editPatentIndexTimeline].username = req.user.username
+                user.timeline[editPatentIndexTimeline].date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+                user.save()
+                    .then(() => {
+
+                        res.send({
+                            success: true
+                        })
+
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    })
+
+
 
 //delete journal
 router.post('/delete',
-passport.authenticate('jwt',{session:false,failureRedirect:'/sessionexpire'})
-,(req,res)=>{
-console.log('ok')
-    User.findOne({username:req.body.username})
-    .then((user)=>{
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+        console.log('ok')
+        User.findOne({
+                username: req.body.username
+            })
+            .then((user) => {
 
-        const removePatent = user.patent
+                const removePatent = user.patent
                     .map(item => item._id)
                     .indexOf(req.body.id)
-        user.patent.splice(removePatent, 1)
-        user.save()
-        .then(()=>{
-            const removePatent = user.timeline
-                    .map(item => item.id)
-                    .indexOf(req.body.id)
-            user.timeline.splice(removePatent, 1)
-            user.save()
-            .then(()=>{
-                res.send({success:true})
+                user.patent.splice(removePatent, 1)
+                user.save()
+                    .then(() => {
+                        const removePatent = user.timeline
+                            .map(item => item.id)
+                            .indexOf(req.body.id)
+                        user.timeline.splice(removePatent, 1)
+                        user.save()
+                            .then(() => {
+                                res.send({
+                                    success: true
+                                })
+                            })
+                            .catch((error) => {
+                                console.log(error)
+                            })
+
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error)
             })
-            
-        })  
-        .catch((error)=>{
-            console.log(error)
-        })  
 
     })
-    .catch((error)=>{
-        console.log(error)
-    })
-
-})
 
 
 //view journal
-router.get('/:username/:id/:title',(req, res)=>{
+router.get('/:username/:id/:title', (req, res) => {
 
-    User.findOne({username:req.params.username})
-    .then((user)=>{
-        const patentIndex = user.patent
-                    .map(item => item._id)
-                    .indexOf(req.params.id)
-        const patent = user.patent[patentIndex]
-        if(patent){
-            res.render('profilecomponent/research/patent/viewpatent', {
-                patent,
-                user,
-                account: false,
-                auth: false
-            })  
-        }else{
-            res.end('patent no longer exists')
-        }  
-    })
-    .catch((error)=>{
-        console.log(error)
-    })
+    User.findOne({
+            username: req.params.username
+        })
+        .then((user) => {
+            const patentIndex = user.patent
+                .map(item => item._id)
+                .indexOf(req.params.id)
+            const patent = user.patent[patentIndex]
+            if (patent) {
+                res.render('profilecomponent/research/patent/viewpatent', {
+                    patent,
+                    user,
+                    account: false,
+                    auth: false
+                })
+            } else {
+                res.end('patent no longer exists')
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
 
 })
 

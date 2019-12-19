@@ -81,6 +81,103 @@ passport.authenticate('jwt',{session:false,failureRedirect:'/sessionexpire'})
 
 })
 
+
+
+
+//edit chapter
+router.post('/edit',
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+
+        User.findOne({
+                username: req.body.username
+            })
+            .then((user) => {
+
+                const editChapter = user.chapter
+                    .map(item => item._id)
+                    .indexOf(req.body.id)
+
+                res.send({
+                    chapter: user.chapter[editChapter]
+                })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    })
+
+
+//edit post chapter
+router.post('/edit/post',
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+
+        User.findOne({
+                username: req.user.username
+            })
+            .then((user) => {
+
+                const editChapterIndex = user.chapter
+                    .map(item => item._id)
+                    .indexOf(req.body.id)
+
+                user.chapter[editChapterIndex].title = req.body.title
+                if (typeof req.body.authors !== undefined) {
+                    user.chapter[editChapterIndex].authors = req.body.authors.split(',')
+                }
+                if (typeof req.body.keyword !== undefined) {
+                    user.chapter[editChapterIndex].keyword = req.body.keyword.split(',')
+                }
+                user.chapter[editChapterIndex].description = req.body.description
+                user.chapter[editChapterIndex].publicationdate = req.body.publicationdate
+                user.chapter[editChapterIndex].volume = req.body.volume
+                user.chapter[editChapterIndex].book = req.body.book
+                user.chapter[editChapterIndex].pages = req.body.pages
+                user.chapter[editChapterIndex].publisher = req.body.publisher
+                var date = new Date
+                user.chapter[editChapterIndex].date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+
+                const editChapterIndexTimeline = user.timeline
+                    .map(item => item.id)
+                    .indexOf(req.body.id)
+                user.timeline[editChapterIndexTimeline].id = req.body.id
+                user.timeline[editChapterIndexTimeline].tag = 'chapter'
+                user.timeline[editChapterIndexTimeline].title = req.body.title
+                user.timeline[editChapterIndexTimeline].username = req.user.username
+                user.timeline[editChapterIndexTimeline].date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+                user.save()
+                    .then(() => {
+
+                        res.send({
+                            success: true
+                        })
+
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    })
+
+
+
+
+
+
 //delete journal
 router.post('/delete',
 passport.authenticate('jwt',{session:false,failureRedirect:'/sessionexpire'})

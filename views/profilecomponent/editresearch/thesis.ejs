@@ -1,32 +1,45 @@
 <%- include('../../bootstrap') %>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 mt-2 mb-3">
-            <strong>Title</strong>
-            <input type="text" class="form-control" id="thesisTitle">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
-            <input type="text" class="form-control" id="thesisAuthor">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Keywords (For example: a, b, c)</strong>
-            <input type="text" class="form-control" id="thesisKeyword">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Abstract / Description</strong>
-            <textarea name="thesisAbstract" class="form-control" id="thesisAbstract" rows="6"></textarea>
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Publication date (For example: 2019, 20019/12 or 2019/10/31)</strong>
-            <input type="text" class="form-control" id="thesisDate">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Institution</strong>
-            <input type="text" id="thesisInstitution" class="form-control">
-        </div>
-        <!-- <div class="col-12 mt-2 mb-3">
+<!-- Modal -->
+<div class="modal fade editresearchthesis-modal-xl" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="editresearchthesisLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editThesislabelloading"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Title</strong>
+                            <input type="text" class="form-control" id="ethesisTitle">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
+                            <input type="text" class="form-control" id="ethesisAuthor">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Keywords (For example: a, b, c)</strong>
+                            <input type="text" class="form-control" id="ethesisKeyword">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Abstract / Description</strong>
+                            <textarea name="thesisAbstract" class="form-control" id="ethesisAbstract"
+                                rows="6"></textarea>
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Publication date (For example: 2019, 20019/12 or 2019/10/31)</strong>
+                            <input type="text" class="form-control" id="ethesisDate">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Institution</strong>
+                            <input type="text" id="ethesisInstitution" class="form-control">
+                        </div>
+                        <input type="text" id="ethesisId" hidden>
+                        <!-- <div class="col-12 mt-2 mb-3">
             <strong>upload pdf or doc file</strong>
             <div class="input-group mb-3">
                 <div class="custom-file">
@@ -35,8 +48,14 @@
                 </div>
             </div>
         </div> -->
-        <div class="col-12 mb-3">
-            <button class="btn btn-dark" id="thesisButton" onclick="publishThesis(event)">Publish</button>
+                        <div class="col-12 mb-3">
+                            <button class="btn btn-dark" id="ethesisButton"
+                                onclick="publishEditThesis(event)">Publish</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

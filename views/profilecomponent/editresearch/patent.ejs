@@ -1,116 +1,129 @@
 <%- include('../../bootstrap') %>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 mt-2 mb-3">
-            <strong>Title</strong>
-            <input type="text" class="form-control" id="patentTitle">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Inventors (For example: Patterson, David, Lamport, Leslie)</strong>
-            <input type="text" class="form-control" id="patentInventors">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Keywords (For example: a, b, c)</strong>
-            <input type="text" class="form-control" id="patentKeyword">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Abstract / Description</strong>
-            <textarea name="patentAbstract" class="form-control" id="patentAbstract" rows="6"></textarea>
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
-            <input type="text" class="form-control" id="patentDate">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Patent Office</strong>
-            <select class="custom-select custom-select" id="patentOffice">
-                <option selected value="">select</option>
-                <option value="US">US</option>
-                <option value="EP">EP</option>
-                <option value="JP">JP</option>
-                <option value="WO">WO</option>
-                <option value="AP">AP</option>
-                <option value="EA">EA</option>
-                <option value="OA">OA</option>
-                <option value="AR">AR</option>
-                <option value="CZ">CZ</option>
-                <option value="IE">IE</option>
-                <option value="MT">MT</option>
-                <option value="SG">SG</option>
-                <option value="AT">AT</option>
-                <option value="DE">DE</option>
-                <option value="IL">IL</option>
-                <option value="MW">MW</option>
-                <option value="SI">SI</option>
-                <option value="AU">AU</option>
-                <option value="DK">DK</option>
-                <option value="IN">IN</option>
-                <option value="MX">MX</option>
-                <option value="SK">SK</option>
-                <option value="BA">BA</option>
-                <option value="EE">EE</option>
-                <option value="IT">IT</option>
-                <option value="MY">MY</option>
-                <option value="SU">SU</option>
-                <option value="BE">BE</option>
-                <option value="EG">EG</option>
-                <option value="NL">NL</option>
-                <option value="TJ">TJ</option>
-                <option value="BG">BG</option>
-                <option value="ES">ES</option>
-                <option value="KE">KE</option>
-                <option value="NO">NO</option>
-                <option value="TR">TR</option>
-                <option value="DR">DR</option>
-                <option value="FI">FI</option>
-                <option value="KR">KR</option>
-                <option value="NZ">NZ</option>
-                <option value="TW">TW</option>
-                <option value="CA">CA</option>
-                <option value="FR">FR</option>
-                <option value="LT">LT</option>
-                <option value="PH">PH</option>
-                <option value="CH">CH</option>
-                <option value="GB">GB</option>
-                <option value="LU">LU</option>
-                <option value="PL">PL</option>
-                <option value="VN">VN</option>
-                <option value="CN">CN</option>
-                <option value="GR">GR</option>
-                <option value="LV">LV</option>
-                <option value="PT">PT</option>
-                <option value="YU">YU</option>
-                <option value="CS">CS</option>
-                <option value="HK">HK</option>
-                <option value="MC">MC</option>
-                <option value="RO">RO</option>
-                <option value="ZA">ZA</option>
-                <option value="CU">CU</option>
-                <option value="HR">HR</option>
-                <option value="MD">MD</option>
-                <option value="RU">RU</option>
-                <option value="ZM">ZM</option>
-                <option value="CY">CY</option>
-                <option value="HU">HU</option>
-                <option value="MN">MN</option>
-                <option value="SE">SE</option>
-                <option value="ZW">ZW</option>
-                <option value="ID">ID</option>
-                <option value="DZ">DZ</option>
-                <option value="GC">GC</option>
-                <option value="MA">MA</option>
-            </select>
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Patent number</strong>
-            <input type="text" id="patentNumber" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Application number</strong>
-            <input type="text" id="patentApplicationNumber" class="form-control">
-        </div>
-        <!-- <div class="col-12 mt-2 mb-3">
+<!-- Modal -->
+<div class="modal fade editresearchpatent-modal-xl" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="editresearchpatentLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPatentlabelloading"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Title</strong>
+                            <input type="text" class="form-control" id="epatentTitle">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Inventors (For example: Patterson, David, Lamport, Leslie)</strong>
+                            <input type="text" class="form-control" id="epatentInventors">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Keywords (For example: a, b, c)</strong>
+                            <input type="text" class="form-control" id="epatentKeyword">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Abstract / Description</strong>
+                            <textarea name="patentAbstract" class="form-control" id="epatentAbstract"
+                                rows="6"></textarea>
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
+                            <input type="text" class="form-control" id="epatentDate">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Patent Office</strong>
+                            <select class="custom-select custom-select" id="epatentOffice">
+                                <option selected value="">select</option>
+                                <option value="US">US</option>
+                                <option value="EP">EP</option>
+                                <option value="JP">JP</option>
+                                <option value="WO">WO</option>
+                                <option value="AP">AP</option>
+                                <option value="EA">EA</option>
+                                <option value="OA">OA</option>
+                                <option value="AR">AR</option>
+                                <option value="CZ">CZ</option>
+                                <option value="IE">IE</option>
+                                <option value="MT">MT</option>
+                                <option value="SG">SG</option>
+                                <option value="AT">AT</option>
+                                <option value="DE">DE</option>
+                                <option value="IL">IL</option>
+                                <option value="MW">MW</option>
+                                <option value="SI">SI</option>
+                                <option value="AU">AU</option>
+                                <option value="DK">DK</option>
+                                <option value="IN">IN</option>
+                                <option value="MX">MX</option>
+                                <option value="SK">SK</option>
+                                <option value="BA">BA</option>
+                                <option value="EE">EE</option>
+                                <option value="IT">IT</option>
+                                <option value="MY">MY</option>
+                                <option value="SU">SU</option>
+                                <option value="BE">BE</option>
+                                <option value="EG">EG</option>
+                                <option value="NL">NL</option>
+                                <option value="TJ">TJ</option>
+                                <option value="BG">BG</option>
+                                <option value="ES">ES</option>
+                                <option value="KE">KE</option>
+                                <option value="NO">NO</option>
+                                <option value="TR">TR</option>
+                                <option value="DR">DR</option>
+                                <option value="FI">FI</option>
+                                <option value="KR">KR</option>
+                                <option value="NZ">NZ</option>
+                                <option value="TW">TW</option>
+                                <option value="CA">CA</option>
+                                <option value="FR">FR</option>
+                                <option value="LT">LT</option>
+                                <option value="PH">PH</option>
+                                <option value="CH">CH</option>
+                                <option value="GB">GB</option>
+                                <option value="LU">LU</option>
+                                <option value="PL">PL</option>
+                                <option value="VN">VN</option>
+                                <option value="CN">CN</option>
+                                <option value="GR">GR</option>
+                                <option value="LV">LV</option>
+                                <option value="PT">PT</option>
+                                <option value="YU">YU</option>
+                                <option value="CS">CS</option>
+                                <option value="HK">HK</option>
+                                <option value="MC">MC</option>
+                                <option value="RO">RO</option>
+                                <option value="ZA">ZA</option>
+                                <option value="CU">CU</option>
+                                <option value="HR">HR</option>
+                                <option value="MD">MD</option>
+                                <option value="RU">RU</option>
+                                <option value="ZM">ZM</option>
+                                <option value="CY">CY</option>
+                                <option value="HU">HU</option>
+                                <option value="MN">MN</option>
+                                <option value="SE">SE</option>
+                                <option value="ZW">ZW</option>
+                                <option value="ID">ID</option>
+                                <option value="DZ">DZ</option>
+                                <option value="GC">GC</option>
+                                <option value="MA">MA</option>
+                            </select>
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Patent number</strong>
+                            <input type="text" id="epatentNumber" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Application number</strong>
+                            <input type="text" id="epatentApplicationNumber" class="form-control">
+                        </div>
+                        <input type="text" id="epatentId" hidden>
+                        <!-- <div class="col-12 mt-2 mb-3">
             <strong>upload pdf or doc file</strong>
             <div class="input-group mb-3">
                 <div class="custom-file">
@@ -119,8 +132,14 @@
                 </div>
             </div>
         </div> -->
-        <div class="col-12 mb-3">
-            <button class="btn btn-dark" id="patentButton" onclick="publishPatent(event)">Publish</button>
+                        <div class="col-12 mb-3">
+                            <button class="btn btn-dark" id="epatentButton"
+                                onclick="publishEditPatent(event)">Publish</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

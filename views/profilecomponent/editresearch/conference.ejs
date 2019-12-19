@@ -1,48 +1,61 @@
 <%- include('../../bootstrap') %>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 mt-2 mb-3">
-            <strong>Title</strong>
-            <input type="text" class="form-control" id="conferenceTitle">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
-            <input type="text" class="form-control" id="conferenceAuthor">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Keywords (For example: a, b, c)</strong>
-            <input type="text" class="form-control" id="conferenceKeyword">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Abstract / Description</strong>
-            <textarea name="conferenceAbstract" class="form-control" id="conferenceAbstract" rows="6"></textarea>
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
-            <input type="text" class="form-control" id="conferenceDate">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Conference</strong>
-            <input type="text" id="conference" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Volume</strong>
-            <input type="text" id="conferenceVolume" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Issue</strong>
-            <input type="text" id="conferenceIssue" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Pages</strong>
-            <input type="text" id="conferencePage" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Publisher</strong>
-            <input type="text" id="conferencePublisher" class="form-control">
-        </div>
-        <!-- <div class="col-12 mt-2 mb-3">
+<!-- Modal -->
+<div class="modal fade editresearchconference-modal-xl" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="editresearchconferenceLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editConferencelabelloading"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Title</strong>
+                            <input type="text" class="form-control" id="econferenceTitle">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
+                            <input type="text" class="form-control" id="econferenceAuthor">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Keywords (For example: a, b, c)</strong>
+                            <input type="text" class="form-control" id="econferenceKeyword">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Abstract / Description</strong>
+                            <textarea name="conferenceAbstract" class="form-control" id="econferenceAbstract"
+                                rows="6"></textarea>
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
+                            <input type="text" class="form-control" id="econferenceDate">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Conference</strong>
+                            <input type="text" id="econference" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Volume</strong>
+                            <input type="text" id="econferenceVolume" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Issue</strong>
+                            <input type="text" id="econferenceIssue" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Pages</strong>
+                            <input type="text" id="econferencePage" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Publisher</strong>
+                            <input type="text" id="econferencePublisher" class="form-control">
+                        </div>
+                        <input type="text" id="econferenceId" hidden>
+                        <!-- <div class="col-12 mt-2 mb-3">
             <strong>upload pdf or doc file</strong>
             <div class="input-group mb-3">
                 <div class="custom-file">
@@ -51,8 +64,14 @@
                 </div>
             </div>
         </div> -->
-        <div class="col-12 mb-3">
-            <button class="btn btn-dark" id="conferenceButton" onclick="publishConference(event)">Publish</button>
+                        <div class="col-12 mb-3">
+                            <button class="btn btn-dark" id="conferenceButton"
+                                onclick="publishEditConference(event)">Publish</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

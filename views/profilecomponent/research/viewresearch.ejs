@@ -60,25 +60,29 @@
                                                 <span><%= journal.date %></span>
                                             </td>
 
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
                                             <td class="text-center">
-                                                <% if(auth) { %>
-                                                <% if(account) { %>
                                                 <i class="fa fa-pencil"
                                                     onclick="editJournal(event,'<%= user.username %>','<%= journal._id %>')"
                                                     data-toggle="modal" data-target=".editresearchjournal-modal-xl"
                                                     style="cursor: pointer;" title="edit"></i>
-                                                <% } %>
-                                                <% } %>
                                             </td>
+                                            <% } %>
+                                            <% } %>
+
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
                                             <td class="text-center">
-                                                <% if(auth) { %>
-                                                <% if(account) { %>
                                                 <i class="fa fa-trash"
                                                     onclick="deleteJournal(event,'<%= user.username %>','<%= journal._id %>')"
                                                     style="cursor: pointer;" title="delete"></i>
-                                                <% } %>
-                                                <% } %>
                                             </td>
+                                            <% } %>
+                                            <% } %>
+
 
                                         </tr>
                                         <% }) %>
@@ -100,6 +104,7 @@
                                             <th scope="col">date</th>
                                             <% if(auth) { %>
                                             <% if(account) { %>
+                                            <th scope="col">edit</th>
                                             <th scope="col">delete</th>
                                             <% } %>
                                             <% } %>
@@ -120,15 +125,29 @@
                                                 <span><%= conference.date %></span>
                                             </td>
 
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
                                             <td class="text-center">
-                                                <% if(auth) { %>
-                                                <% if(account) { %>
+                                                <i class="fa fa-pencil"
+                                                    onclick="editConference(event,'<%= user.username %>','<%= conference._id %>')"
+                                                    data-toggle="modal" data-target=".editresearchconference-modal-xl"
+                                                    style="cursor: pointer;" title="edit"></i>
+                                            </td>
+                                            <% } %>
+                                            <% } %>
+
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <td class="text-center">
                                                 <i class="fa fa-trash"
                                                     onclick="deleteConference(event,'<%= user.username %>','<%= conference._id %>')"
                                                     style="cursor: pointer;" title="delete"></i>
-                                                <% } %>
-                                                <% } %>
                                             </td>
+                                            <% } %>
+                                            <% } %>
+
 
                                         </tr>
                                         <% }) %>
@@ -150,6 +169,7 @@
                                             <th scope="col">date</th>
                                             <% if(auth) { %>
                                             <% if(account) { %>
+                                            <th scope="col">edit</th>
                                             <th scope="col">delete</th>
                                             <% } %>
                                             <% } %>
@@ -170,15 +190,28 @@
                                                 <span><%= chapter.date %></span>
                                             </td>
 
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
                                             <td class="text-center">
-                                                <% if(auth) { %>
-                                                <% if(account) { %>
+                                                <i class="fa fa-pencil"
+                                                    onclick="editChapter(event,'<%= user.username %>','<%= chapter._id %>')"
+                                                    data-toggle="modal" data-target=".editresearchchapter-modal-xl"
+                                                    style="cursor: pointer;" title="edit"></i>
+                                            </td>
+                                            <% } %>
+                                            <% } %>
+
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <td class="text-center">
                                                 <i class="fa fa-trash"
                                                     onclick="deleteChapter(event,'<%= user.username %>','<%= chapter._id %>')"
                                                     style="cursor: pointer;" title="delete"></i>
-                                                <% } %>
-                                                <% } %>
                                             </td>
+                                            <% } %>
+                                            <% } %>
 
                                         </tr>
                                         <% }) %>
@@ -199,6 +232,7 @@
                                             <th scope="col">date</th>
                                             <% if(auth) { %>
                                             <% if(account) { %>
+                                            <th scope="col">edit</th>
                                             <th scope="col">delete</th>
                                             <% } %>
                                             <% } %>
@@ -219,15 +253,27 @@
                                                 <span><%= book.date %></span>
                                             </td>
 
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
                                             <td class="text-center">
-                                                <% if(auth) { %>
-                                                <% if(account) { %>
+                                                <i class="fa fa-pencil"
+                                                    onclick="editBook(event,'<%= user.username %>','<%= book._id %>')"
+                                                    data-toggle="modal" data-target=".editresearchbook-modal-xl"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                            </td>
+                                            <% } %>
+                                            <% } %>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <td class="text-center">
                                                 <i class="fa fa-trash"
                                                     onclick="deleteBook(event,'<%= user.username %>','<%= book._id %>')"
                                                     style="cursor: pointer;" title="delete"></i>
-                                                <% } %>
-                                                <% } %>
                                             </td>
+                                            <% } %>
+                                            <% } %>
+
 
                                         </tr>
                                         <% }) %>
@@ -249,6 +295,7 @@
                                             <th scope="col">date</th>
                                             <% if(auth) { %>
                                             <% if(account) { %>
+                                            <th scope="col">edit</th>
                                             <th scope="col">delete</th>
                                             <% } %>
                                             <% } %>
@@ -269,15 +316,27 @@
                                                 <span><%= thesis.date %></span>
                                             </td>
 
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
                                             <td class="text-center">
-                                                <% if(auth) { %>
-                                                <% if(account) { %>
+                                                <i class="fa fa-pencil"
+                                                    onclick="editThesis(event,'<%= user.username %>','<%= thesis._id %>')"
+                                                    data-toggle="modal" data-target=".editresearchthesis-modal-xl"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                            </td>
+                                            <% } %>
+                                            <% } %>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <td class="text-center">
                                                 <i class="fa fa-trash"
                                                     onclick="deleteThesis(event,'<%= user.username %>','<%= thesis._id %>')"
                                                     style="cursor: pointer;" title="delete"></i>
-                                                <% } %>
-                                                <% } %>
                                             </td>
+                                            <% } %>
+                                            <% } %>
+
 
                                         </tr>
                                         <% }) %>
@@ -299,6 +358,7 @@
                                             <th scope="col">date</th>
                                             <% if(auth) { %>
                                             <% if(account) { %>
+                                            <th scope="col">edit</th>
                                             <th scope="col">delete</th>
                                             <% } %>
                                             <% } %>
@@ -319,15 +379,27 @@
                                                 <span><%= patent.date %></span>
                                             </td>
 
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
                                             <td class="text-center">
-                                                <% if(auth) { %>
-                                                <% if(account) { %>
+                                                <i class="fa fa-pencil"
+                                                    onclick="editPatent(event,'<%= user.username %>','<%= patent._id %>')"
+                                                    data-toggle="modal" data-target=".editresearchpatent-modal-xl"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                            </td>
+                                            <% } %>
+                                            <% } %>
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <td class="text-center">
                                                 <i class="fa fa-trash"
                                                     onclick="deletePatent(event,'<%= user.username %>','<%= patent._id %>')"
                                                     style="cursor: pointer;" title="delete"></i>
-                                                <% } %>
-                                                <% } %>
                                             </td>
+                                            <% } %>
+                                            <% } %>
+
 
                                         </tr>
                                         <% }) %>
@@ -349,6 +421,7 @@
                                             <th scope="col">date</th>
                                             <% if(auth) { %>
                                             <% if(account) { %>
+                                            <th scope="col">edit</th>
                                             <th scope="col">delete</th>
                                             <% } %>
                                             <% } %>
@@ -369,15 +442,28 @@
                                                 <span><%= courtcase.date %></span>
                                             </td>
 
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
                                             <td class="text-center">
-                                                <% if(auth) { %>
-                                                <% if(account) { %>
+                                                <i class="fa fa-pencil"
+                                                    onclick="editCourtcase(event,'<%= user.username %>','<%= courtcase._id %>')"
+                                                    data-toggle="modal" data-target=".editresearchcourtcase-modal-xl"
+                                                    style="cursor: pointer;" title="delete"></i>
+                                            </td>
+                                            <% } %>
+                                            <% } %>
+
+                                            <% if(auth) { %>
+                                            <% if(account) { %>
+                                            <td class="text-center">
                                                 <i class="fa fa-trash"
                                                     onclick="deleteCourtcase(event,'<%= user.username %>','<%= courtcase._id %>')"
                                                     style="cursor: pointer;" title="delete"></i>
-                                                <% } %>
-                                                <% } %>
                                             </td>
+                                            <% } %>
+                                            <% } %>
+
 
                                         </tr>
                                         <% }) %>
@@ -394,6 +480,12 @@
 </body>
 
 <%- include('../editresearch/journal') %>
+<%- include('../editresearch/book') %>
+<%- include('../editresearch/chapter') %>
+<%- include('../editresearch/conference') %>
+<%- include('../editresearch/courtcase') %>
+<%- include('../editresearch/patent') %>
+<%- include('../editresearch/thesis') %>
 
 
 <script src="/js/profile/research/journal.js"></script>

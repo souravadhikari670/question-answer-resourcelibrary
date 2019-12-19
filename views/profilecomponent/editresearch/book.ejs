@@ -1,40 +1,52 @@
 <%- include('../../bootstrap') %>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 mt-2 mb-3">
-            <strong>Title</strong>
-            <input type="text" class="form-control" id="bookTitle">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
-            <input type="text" class="form-control" id="bookAuthor">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Keywords (For example: a, b, c)</strong>
-            <input type="text" class="form-control" id="bookKeyword">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
-            <input type="text" class="form-control" id="bookDate">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Abstract / Description</strong>
-            <textarea name="bookAbstract" class="form-control" id="bookAbstract" rows="6"></textarea>
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Volume</strong>
-            <input type="text" id="bookVolume" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Pages</strong>
-            <input type="text" id="bookPage" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Publisher</strong>
-            <input type="text" id="bookPublisher" class="form-control">
-        </div>
-        <!-- <div class="col-12 mt-2 mb-3">
+<!-- Modal -->
+<div class="modal fade editresearchbook-modal-xl" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="editresearchbookLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editBooklabelloading"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Title</strong>
+                            <input type="text" class="form-control" id="ebookTitle">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
+                            <input type="text" class="form-control" id="ebookAuthor">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Keywords (For example: a, b, c)</strong>
+                            <input type="text" class="form-control" id="ebookKeyword">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
+                            <input type="text" class="form-control" id="ebookDate">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Abstract / Description</strong>
+                            <textarea name="bookAbstract" class="form-control" id="ebookAbstract" rows="6"></textarea>
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Volume</strong>
+                            <input type="text" id="ebookVolume" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Pages</strong>
+                            <input type="text" id="ebookPage" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Publisher</strong>
+                            <input type="text" id="ebookPublisher" class="form-control">
+                        </div>
+                      <input type="text" id="ebookId" hidden>
+                        <!-- <div class="col-12 mt-2 mb-3">
             <strong>upload pdf or doc file</strong>
             <div class="input-group mb-3">
                 <div class="custom-file">
@@ -43,8 +55,14 @@
                 </div>
             </div>
         </div> -->
-        <div class="col-12 mb-3">
-            <button class="btn btn-dark" id="bookButton" onclick="publishBook(event)">Publish</button>
+                        <div class="col-12 mb-3">
+                            <button class="btn btn-dark" id="ebookButton"
+                                onclick="publishEditBook(event)">Publish</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

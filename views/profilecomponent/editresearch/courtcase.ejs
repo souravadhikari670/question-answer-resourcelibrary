@@ -1,36 +1,49 @@
 <%- include('../../bootstrap') %>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 mt-2 mb-3">
-            <strong>Title</strong>
-            <input type="text" class="form-control" id="courtcaseTitle">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Keywords (For example: a, b, c)</strong>
-            <input type="text" class="form-control" id="courtcaseKeyword">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Court</strong>
-            <input type="text" class="form-control" id="courtcaseCourt">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Abstract / Description</strong>
-            <textarea name="courtcaseAbstract" class="form-control" id="courtcaseAbstract" rows="6"></textarea>
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Decided date (For example: 2019, 2019/12 or 2019/10/31)</strong>
-            <input type="text" class="form-control" id="courtcaseDate">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Reporter</strong>
-            <input type="text" id="courtcaseReporter" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Docket id</strong>
-            <input type="text" id="courtcaseDocketid" class="form-control">
-        </div>
-        <!-- <div class="col-12 mt-2 mb-3">
+<!-- Modal -->
+<div class="modal fade editresearchcourtcase-modal-xl" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="editresearchcourtcaseLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCourtcaselabelloading"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Title</strong>
+                            <input type="text" class="form-control" id="ecourtcaseTitle">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Keywords (For example: a, b, c)</strong>
+                            <input type="text" class="form-control" id="ecourtcaseKeyword">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Court</strong>
+                            <input type="text" class="form-control" id="ecourtcaseCourt">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Abstract / Description</strong>
+                            <textarea name="courtcaseAbstract" class="form-control" id="ecourtcaseAbstract"
+                                rows="6"></textarea>
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Decided date (For example: 2019, 2019/12 or 2019/10/31)</strong>
+                            <input type="text" class="form-control" id="ecourtcaseDate">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Reporter</strong>
+                            <input type="text" id="ecourtcaseReporter" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Docket id</strong>
+                            <input type="text" id="ecourtcaseDocketid" class="form-control">
+                        </div>
+                        <input type="text" id="ecourtcaseId" hidden>
+                        <!-- <div class="col-12 mt-2 mb-3">
             <strong>upload pdf or doc file</strong>
             <div class="input-group mb-3">
                 <div class="custom-file">
@@ -39,8 +52,14 @@
                 </div>
             </div>
         </div> -->
-        <div class="col-12 mb-3">
-            <button class="btn btn-dark" id="courtcaseButton" onclick="publishCourtcase(event)">Publish</button>
+                        <div class="col-12 mb-3">
+                            <button class="btn btn-dark" id="courtcaseButton"
+                                onclick="publishEditCourtcase(event)">Publish</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

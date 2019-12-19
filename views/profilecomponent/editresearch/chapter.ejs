@@ -1,44 +1,57 @@
 <%- include('../../bootstrap') %>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 mt-2 mb-3">
-            <strong>Title</strong>
-            <input type="text" class="form-control" id="chapterTitle">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
-            <input type="text" class="form-control" id="chapterAuthor">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Keywords (For example: a, b, c)</strong>
-            <input type="text" class="form-control" id="chapterKeyword">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Abstract / Description</strong>
-            <textarea name="chapterAbstract" class="form-control" id="chapterAbstract" rows="6"></textarea>
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
-            <input type="text" class="form-control" id="chapterDate">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Book</strong>
-            <input type="text" id="chapter" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Volume</strong>
-            <input type="text" id="chapterVolume" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Pages</strong>
-            <input type="text" id="chapterPage" class="form-control">
-        </div>
-        <div class="col-12 mt-2 mb-3">
-            <strong>Publisher</strong>
-            <input type="text" id="chapterPublisher" class="form-control">
-        </div>
-        <!-- <div class="col-12 mt-2 mb-3">
+<!-- Modal -->
+<div class="modal fade editresearchchapter-modal-xl" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="editresearchchapterLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editChapterlabelloading"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Title</strong>
+                            <input type="text" class="form-control" id="echapterTitle">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Authors (For example: Patterson, David, Lamport, Leslie)</strong>
+                            <input type="text" class="form-control" id="echapterAuthor">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Keywords (For example: a, b, c)</strong>
+                            <input type="text" class="form-control" id="echapterKeyword">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Abstract / Description</strong>
+                            <textarea name="chapterAbstract" class="form-control" id="echapterAbstract"
+                                rows="6"></textarea>
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Publication date (For example: 2019, 2019/12 or 2019/10/31)</strong>
+                            <input type="text" class="form-control" id="echapterDate">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Book</strong>
+                            <input type="text" id="echapter" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Volume</strong>
+                            <input type="text" id="echapterVolume" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Pages</strong>
+                            <input type="text" id="echapterPage" class="form-control">
+                        </div>
+                        <div class="col-12 mt-2 mb-3">
+                            <strong>Publisher</strong>
+                            <input type="text" id="echapterPublisher" class="form-control">
+                        </div>
+                        <input type="text" id="echapterId" hidden>  
+                        <!-- <div class="col-12 mt-2 mb-3">
             <strong>upload pdf or doc file</strong>
             <div class="input-group mb-3">
                 <div class="custom-file">
@@ -47,10 +60,15 @@
                 </div>
             </div>
         </div> -->
-        <div class="col-12 mb-3">
-            <button class="btn btn-dark" id="chapterButton" onclick="publishChapter(event)">Publish</button>
+                        <div class="col-12 mb-3">
+                            <button class="btn btn-dark" id="echapterButton"
+                                onclick="publishEditChapter(event)">Publish</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
-
 <script src="/js/profile/research/chapter.js"></script>

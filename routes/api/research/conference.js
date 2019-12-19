@@ -82,7 +82,104 @@ passport.authenticate('jwt',{session:false,failureRedirect:'/sessionexpire'})
 
 })
 
-//delete journal
+
+
+
+//edit chapter
+router.post('/edit',
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+
+        User.findOne({
+                username: req.body.username
+            })
+            .then((user) => {
+
+                const editConference = user.conference
+                    .map(item => item._id)
+                    .indexOf(req.body.id)
+
+                res.send({
+                    conference: user.conference[editConference]
+                })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    })
+
+
+//edit post conference
+router.post('/edit/post',
+    passport.authenticate('jwt', {
+        session: false,
+        failureRedirect: '/sessionexpire'
+    }), (req, res) => {
+
+        User.findOne({
+                username: req.user.username
+            })
+            .then((user) => {
+
+                const editConferenceIndex = user.conference
+                    .map(item => item._id)
+                    .indexOf(req.body.id)
+
+                user.conference[editConferenceIndex].title = req.body.title
+                if (typeof req.body.authors !== undefined) {
+                    user.conference[editConferenceIndex].authors = req.body.authors.split(',')
+                }
+                if (typeof req.body.keyword !== undefined) {
+                    user.conference[editConferenceIndex].keyword = req.body.keyword.split(',')
+                }
+                user.conference[editConferenceIndex].description = req.body.description
+                user.conference[editConferenceIndex].publicationdate = req.body.publicationdate
+                user.conference[editConferenceIndex].volume = req.body.volume
+                user.conference[editConferenceIndex].conference = req.body.conference
+                user.conference[editConferenceIndex].issue = req.body.issue
+                user.conference[editConferenceIndex].pages = req.body.pages
+                user.conference[editConferenceIndex].publisher = req.body.publisher
+                var date = new Date
+                user.conference[editConferenceIndex].date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+
+                const editConferenceIndexTimeline = user.timeline
+                    .map(item => item.id)
+                    .indexOf(req.body.id)
+                user.timeline[editConferenceIndexTimeline].id = req.body.id
+                user.timeline[editConferenceIndexTimeline].tag = 'conference'
+                user.timeline[editConferenceIndexTimeline].title = req.body.title
+                user.timeline[editConferenceIndexTimeline].username = req.user.username
+                user.timeline[editConferenceIndexTimeline].date = date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+                user.save()
+                    .then(() => {
+
+                        res.send({
+                            success: true
+                        })
+
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
+    })
+
+
+
+
+
+//delete conference
 router.post('/delete',
 passport.authenticate('jwt',{session:false,failureRedirect:'/sessionexpire'})
 ,(req,res)=>{
