@@ -113,6 +113,10 @@ const UserSchema = new Schema({
             type: String
         },
         message:String,
+        view:{
+            type:Boolean,
+            default:false
+        },
         date:String
     }],
 
@@ -121,6 +125,13 @@ const UserSchema = new Schema({
             type:String
         },
         authors:[String],
+        coauthors:[{
+            uid:{
+                type:Schema.Types.ObjectId,
+                ref:"User"
+            },
+            title:String
+        }],
         keyword:[{
             type:String
         }],
@@ -163,6 +174,13 @@ const UserSchema = new Schema({
             type:String
         },
         authors:[String],
+        coauthors:[{
+            uid:{
+                type:Schema.Types.ObjectId,
+                ref:"User"
+            },
+            title:String
+        }],
         keyword:[{
             type:String
         }],
@@ -205,6 +223,13 @@ const UserSchema = new Schema({
             type:String
         },
         authors:[String],
+        coauthors:[{
+            uid:{
+                type:Schema.Types.ObjectId,
+                ref:"User"
+            },
+            title:String
+        }],
         keyword:[{
             type:String
         }],
@@ -244,6 +269,13 @@ const UserSchema = new Schema({
             type:String
         },
         authors:[String],
+        coauthors:[{
+            uid:{
+                type:Schema.Types.ObjectId,
+                ref:"User"
+            },
+            title:String
+        }],
         keyword:[{
             type:String
         }],
@@ -280,6 +312,13 @@ const UserSchema = new Schema({
             type:String
         },
         authors:[String],
+        coauthors:[{
+            uid:{
+                type:Schema.Types.ObjectId,
+                ref:"User"
+            },
+            title:String
+        }],
         keyword:[{
             type:String
         }],
@@ -310,6 +349,13 @@ const UserSchema = new Schema({
             type:String
         },
         inventors:[String],
+        coauthors:[{
+            uid:{
+                type:Schema.Types.ObjectId,
+                ref:"User"
+            },
+            title:String
+        }],
         keyword:[{
             type:String
         }],
@@ -342,6 +388,13 @@ const UserSchema = new Schema({
         title:{
             type:String
         },
+        coauthors:[{
+            uid:{
+                type:Schema.Types.ObjectId,
+                ref:"User"
+            },
+            title:String
+        }],
         keyword:[{
             type:String
         }],

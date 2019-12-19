@@ -23,6 +23,11 @@
                     <div class="row">
                         <% user.message.forEach(function(message, index) { %>
                         <div class="col-12 mt-2 border-bottom">
+                            <% if(message.view == false) { %>
+                                <div id="newMessageAlert<%= index %>" class="text-light text-center" style="width: 40px;height: 20px;background-color: #EC4849;border-radius: 40%;">
+                                        <strong>New</strong>
+                                </div>
+                            <% } %>
                             <strong>Date : </strong> <%= message.date %> <br>
                             <strong>From : </strong>
                             <a href="/api/profile/find/users/<%= message.from %>"><%= message.from %></a><br>

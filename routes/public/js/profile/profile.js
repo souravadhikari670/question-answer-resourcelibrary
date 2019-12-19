@@ -168,7 +168,8 @@ function readMore(username, index, event){
       beforeSend:function(){
         $('#pshowfullmessage').html('loading...')
       },success: function(responce){
-  
+        
+        $('#newMessageAlert'+index).css("display", "none");
         $('#pshowfullmessage').text(responce.message.message)
         let d = `
           <strong> Date : ${responce.message.date}

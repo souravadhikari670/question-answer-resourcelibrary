@@ -387,16 +387,21 @@ router.post('/message/readmore'
 
     User.findOne({username:req.body.username})
     .then((user)=>{
-        
-        User.findOne({username:user.message[req.body.index].from})
-        .then((u)=>{
-
-            res.send({message:user.message[req.body.index], profilepic:u.profilepic})
+        user.message[req.body.index].view = true
+        user.save()
+        .then(()=>{
+            User.findOne({username:user.message[req.body.index].from})
+            .then((u)=>{
+    
+                res.send({message:user.message[req.body.index], profilepic:u.profilepic})
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
         })
         .catch((error)=>{
             console.log(error)
         })
-
     })
     .catch((error)=>{
         console.log(error)
