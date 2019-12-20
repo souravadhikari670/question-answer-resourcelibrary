@@ -1,34 +1,37 @@
 <%- include('../../bootstrap') %>
 <%- include('../../header') %>
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
 
 <body>
     <div class="container-fluid mt-2 rounded" style="min-height: 70vh">
         <div class="row">
-            <div class="col-md-3 mt-5 border shadow-lg p-3 rounded">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <div class="col-md-12 mt-5 border shadow-lg p-3 rounded">
+                <div class="nav nav-pills" id="pills-tab" role="tablist">
 
-                    <a class="nav-link active" id="v-pills-journal-tab" data-toggle="pill" href="#v-pills-journal"
-                        role="tab" aria-controls="v-pills-journal" aria-selected="true">Journal</a>
-                    <a class="nav-link" id="v-pills-conference-tab" data-toggle="pill" href="#v-pills-conference"
-                        role="tab" aria-controls="v-pills-conference" aria-selected="false">Conference</a>
-                    <a class="nav-link" id="v-pills-chapter-tab" data-toggle="pill" href="#v-pills-chapter" role="tab"
-                        aria-controls="v-pills-chapter" aria-selected="false">Chapter</a>
-                    <a class="nav-link" id="v-pills-book-tab" data-toggle="pill" href="#v-pills-book" role="tab"
-                        aria-controls="v-pills-book" aria-selected="false">Book</a>
-                    <a class="nav-link" id="v-pills-thesis-tab" data-toggle="pill" href="#v-pills-thesis" role="tab"
-                        aria-controls="v-pills-thesis" aria-selected="false">Thesis</a>
-                    <a class="nav-link" id="v-pills-patent-tab" data-toggle="pill" href="#v-pills-patent" role="tab"
-                        aria-controls="v-pills-patent" aria-selected="false">patent</a>
-                    <a class="nav-link" id="v-pills-courtcase-tab" data-toggle="pill" href="#v-pills-courtcase"
-                        role="tab" aria-controls="v-pills-courtcase" aria-selected="false">Court case</a>
+                    <a class="nav-link active" id="pills-journal-tab" data-toggle="pill" href="#pills-journal"
+                        role="tab" aria-controls="pills-journal" aria-selected="true">Journal</a>
+                    <a class="nav-link" id="pills-conference-tab" data-toggle="pill" href="#pills-conference"
+                        role="tab" aria-controls="pills-conference" aria-selected="false">Conference</a>
+                    <a class="nav-link" id="pills-chapter-tab" data-toggle="pill" href="#pills-chapter" role="tab"
+                        aria-controls="pills-chapter" aria-selected="false">Chapter</a>
+                    <a class="nav-link" id="pills-book-tab" data-toggle="pill" href="#pills-book" role="tab"
+                        aria-controls="pills-book" aria-selected="false">Book</a>
+                    <a class="nav-link" id="pills-thesis-tab" data-toggle="pill" href="#pills-thesis" role="tab"
+                        aria-controls="pills-thesis" aria-selected="false">Thesis</a>
+                    <a class="nav-link" id="pills-patent-tab" data-toggle="pill" href="#pills-patent" role="tab"
+                        aria-controls="pills-patent" aria-selected="false">patent</a>
+                    <a class="nav-link" id="pills-courtcase-tab" data-toggle="pill" href="#pills-courtcase"
+                        role="tab" aria-controls="pills-courtcase" aria-selected="false">Court case</a>
 
                 </div>
-            </div>
-            <div class="col-md-9 mt-5">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-journal" role="tabpanel"
-                        aria-labelledby="v-pills-journal-tab">
+
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-journal" role="tabpanel"
+                        aria-labelledby="pills-journal-tab">
 
                         <div class="row">
                             <div class="col-12">
@@ -100,8 +103,8 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane fade" id="v-pills-conference" role="tabpanel"
-                        aria-labelledby="v-pills-conference-tab">
+                    <div class="tab-pane fade" id="pills-conference" role="tabpanel"
+                        aria-labelledby="pills-conference-tab">
 
                         <div class="row">
                             <div class="col-12">
@@ -165,8 +168,8 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane fade" id="v-pills-chapter" role="tabpanel"
-                        aria-labelledby="v-pills-chapter-tab">
+                    <div class="tab-pane fade" id="pills-chapter" role="tabpanel"
+                        aria-labelledby="pills-chapter-tab">
 
                         <div class="row">
                             <div class="col-12">
@@ -229,7 +232,7 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane fade" id="v-pills-book" role="tabpanel" aria-labelledby="v-pills-book-tab">
+                    <div class="tab-pane fade" id="pills-book" role="tabpanel" aria-labelledby="pills-book-tab">
 
                         <div class="row">
                             <div class="col-12">
@@ -292,7 +295,7 @@
 
 
                     </div>
-                    <div class="tab-pane fade" id="v-pills-thesis" role="tabpanel" aria-labelledby="v-pills-thesis-tab">
+                    <div class="tab-pane fade" id="pills-thesis" role="tabpanel" aria-labelledby="pills-thesis-tab">
 
                         <div class="row">
                             <div class="col-12">
@@ -355,7 +358,7 @@
 
 
                     </div>
-                    <div class="tab-pane fade" id="v-pills-patent" role="tabpanel" aria-labelledby="v-pills-patent-tab">
+                    <div class="tab-pane fade" id="pills-patent" role="tabpanel" aria-labelledby="pills-patent-tab">
 
                         <div class="row">
                             <div class="col-12">
@@ -417,8 +420,8 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane fade" id="v-pills-courtcase" role="tabpanel"
-                        aria-labelledby="v-pills-courtcase-tab">
+                    <div class="tab-pane fade" id="pills-courtcase" role="tabpanel"
+                        aria-labelledby="pills-courtcase-tab">
 
                         <div class="row">
                             <div class="col-12">

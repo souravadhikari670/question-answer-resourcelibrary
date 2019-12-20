@@ -1,12 +1,14 @@
 <%- include('../bootstrap') %>
 
+
+
 <!-- Modal -->
-<div class="modal fade followQuestionModal" data-backdrop="static" tabindex="-1" role="dialog"
+<div class="modal fade followQuestionModal" tabindex="-1" role="dialog"
     aria-labelledby="followQuestionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Following question</h5>
+                <h5 class="modal-title">Following question</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,36 +16,36 @@
             <div class="modal-body">
                 <table class="table">
                     <thead>
-                      <tr class="text-center">
-                        <th scope="col">Question</th>
-                        <% if(auth) { %>
-                        <% if(account) { %>
+                        <tr class="text-center">
+                            <th scope="col">Question</th>
+                            <% if(auth) { %>
+                            <% if(account) { %>
                             <th scope="col">Follow</th>
-                        <% } %>
-                        <% } %>
-                      </tr>
+                            <% } %>
+                            <% } %>
+                        </tr>
                     </thead>
                     <tbody>
                         <% user.followquestion.forEach(function(q) { %>
-                      <tr class="text-center">
-                        <td>
-                            <a href="/api/questions/<%= q.id %>/<%= q.username %>/<%= q.title %>">
-                                <%= q.title %>
-                            </a>
-                        </td>
-                        <% if(auth) { %>
+                        <tr class="text-center">
+                            <td>
+                                <a href="/api/questions/<%= q.id %>/<%= q.username %>/<%= q.title %>">
+                                    <%= q.title %>
+                                </a>
+                            </td>
+                            <% if(auth) { %>
                             <% if(account) { %>
-                                <td>
-                                    <i class="fa fa-heart ml-3" style="font-size: 18px; 
+                            <td>
+                                <i class="fa fa-heart ml-3" style="font-size: 18px; 
                                     color: #E83350;" id="qid<%= q.id %>"
                                     onclick="followQuestion(event,'<%= q.username %>','<%= q.id %>')"></i>
-                                </td>
+                            </td>
                             <% } %>
                             <% } %>
-                      </tr>
-                      <% }) %>
+                        </tr>
+                        <% }) %>
                     </tbody>
-                  </table>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

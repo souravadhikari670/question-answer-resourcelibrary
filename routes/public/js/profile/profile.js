@@ -181,7 +181,7 @@ function readMore(username, index, event){
         <strong>From : </strong>
         </div>
         <div "col-1 mt-3">
-          ${responce.profilepic =='https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_1280.png'? ` <div id="messageProfilepicCon" style="background-image: url('https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_1280.png');"></div>`:`<div id="messageProfilepicCon"style="background-image: url('/profile/profilepic/${responce.profilepic}');"></div>`}
+          ${responce.profilepic == 'https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_1280.png'? ` <div id="messageProfilepicCon" style="background-image: url('https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_1280.png');"></div>`:`<div id="messageProfilepicCon"style="background-image: url('/profile/profilepic/${responce.profilepic}');"></div>`}
         </div>
           <div class="col-10 mt-3">
             <a href="/api/profile/find/users/${responce.message.from}" class="ml-2"
@@ -299,6 +299,8 @@ function trimfield(str) {
   {
     event.preventDefault()
     $(document).ready( function(){
+      if($('#simpleTextMessage').val() != '')
+      {
       $.ajax({
         method:"POST",
         url:"/api/profile/postsimplemessage",
@@ -317,6 +319,12 @@ function trimfield(str) {
             location.reload()
         }
       })
+    }else{
+      Swal.fire({
+        type: 'warning',
+        html: 'please type your txt'
+      })
+    }
     })
   }
   
@@ -326,6 +334,8 @@ function trimfield(str) {
   {
     event.preventDefault()
     $(document).ready( function(){
+      if($('#simpleTextMessage').val() != '')
+      {
       $.ajax({
         method:"POST",
         url:"/api/profile/postsimplemessage",
@@ -344,6 +354,12 @@ function trimfield(str) {
             location.reload()
         }
       })
+    }else{
+      Swal.fire({
+        type: 'warning',
+        html: 'please type your code'
+      })
+    }
     })
   }
   

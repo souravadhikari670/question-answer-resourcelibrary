@@ -1,11 +1,14 @@
 <%- include('bootstrap') %>
+<link rel="stylesheet" href="/css/navbar/style.css">
 <style>
-a{
-    cursor: pointer;
-}
+    a {
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+    }
 
-/* search username */
-.autocomplete {
+    /* search username */
+    .autocomplete {
         position: relative;
         display: inline-block;
     }
@@ -52,48 +55,136 @@ a{
         background-color: DodgerBlue !important;
         color: #ffffff;
     }
-
 </style>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light shadow-sm">
-    <a class="navbar-brand" href="/" style="color: #000;">Scho<strong>Life</strong></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <% if(!auth) { %>
-            <li class="nav-item active">
-                <a class="nav-link"
-                data-toggle="modal" data-target="#loginModal"
-                >Login <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                href="/"
-                >Register</a>
-            </li>
-            <% } %>
-            <% if(auth) { %>
-                <li class="nav-item">
-                        <a class="nav-link"
-                        href="/api/profile"
-                        >profile</a>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <a href="/" style="color: #fff;">
+            <div class="sidebar-header">
+                <h3>SchoLife</h3>
+                <strong>SL</strong>
+            </div>
+            </a>
+
+            <% if(!auth) { %>
+                <ul class="list-unstyled components">
+                    <li>
+                        <a data-toggle="modal" data-target="#loginModal"
+                        >Login <span class="sr-only">(current)</span></a>
                     </li>
+                    <li>
+                        <a href="/" style="color: #fff;">Register</a>
+                    </li>
+                </ul>
             <% } %>
             <% if(auth) { %>
-                <form action="/logout" method="POST" style="margin: 0;">
-                    <button class="btn btn-danger btn-sm btn-inline ml-5 float-right">Logout</button>
-                </form>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="/api/profile">
+                        <i class="fa fa-user"></i>
+                        My profile
+                    </a>
+                </li>
+                <li>
+                    <a style="color: #fff;"data-toggle="modal" data-target=".followQuestionModal">
+                        <i class="fa fa-heart"></i>
+                        following question <strong><%= user.followquestion.length %></strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="/api/questions/<%= user.username %>/questions" style="color: #fff;">
+                        <i class="fa fa-question"></i>
+                        Question <strong><%= user.question.length %></strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" style="color: #fff;">
+                        <i class="fa fa-briefcase"></i>
+                        Resource <strong><%= user.videofile.length + user.txtfile.length %></strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="/api/research/<%= user.username %>/allresearch" style="color: #fff;">
+                        <i class="fa fa-university"></i>
+                        Research
+                        <strong><%= user.journal.length + user.conference.length + user.chapter.length + user.book.length + user.thesis.length + user.patent.length + user.courtcase.length %></strong>
+                    </a>
+                </li>
+                <li>
+                    <a style="color: #fff;"data-toggle="modal" data-target="#followerModal"
+                    onclick="getFollower(event,'<%= user.username %>')" id="btnFollower">
+                        <i class="fa fa-group"></i>
+                        Follower <strong><%= user.follower.length %></strong>
+                        
+                    </a>
+                </li>
+                <li>
+                    <a style="color: #fff;" data-toggle="modal" data-target="#followingModal" id="btnFollowing"
+                    onclick="getFollowing(event,'<%= user.username %>')">
+                        <i class="fa fa-group"></i>
+                        Following <strong><%= user.following.length %> </strong>
+                        
+                    </a>
+                </li>
+                <li style="color: transparent;" class="text-center mt-3">
+                    <form action="/logout" method="POST">
+                        <button class="btn btn-light" type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
             <% } %>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 autocomplete" autocomplete="off" type="text" placeholder="search users" aria-label="Search" id="contributorUsername">
-        <button class="btn btn-outline-success my-2 my-sm-0" id="btnSearch" onclick="actionUserSearch(event)">Search</button>
-      </form>
-    </div>
-  </nav>
-  <script src="/js/header/header.js"></script>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fa fa-align-left"></i>
+    
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2 autocomplete" autocomplete="off" type="text"
+                                        placeholder="search users" aria-label="Search" id="contributorUsername">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" id="btnSearch"
+                                        onclick="actionUserSearch(event)">Search</button>
+                                </form>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#sidebarCollapse').on('click', function () {
+                        $('#sidebar').toggleClass('active');
+                    });
+                });
+            </script>
+
+
+<script src="/js/header/header.js"></script>
 <!-- login modal -->
 <%- include('login') %>
+
+<% if(auth) { %>
+<%- include('profilecomponent/followquestionmodal') %>
+<%- include('profilecomponent/follower') %>
+<%- include('profilecomponent/following') %>
+<% } %>

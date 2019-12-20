@@ -2,7 +2,84 @@
 <%- include('../../header') %>
 <%- include('../../component/refresh') %>
 
-<div class="container-fluid mt-4 border-left border-right" style="min-height: 70vh">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+<body>
+
+
+
+<script>
+
+$(document).ready(function() {
+    $('#questiontable').DataTable( {
+        columnDefs: [ {
+            targets: [ 0 ],
+            orderData: [ 0, 1 ]
+        }, {
+            targets: [ 1 ],
+            orderData: [ 1, 0 ]
+        }, {
+            targets: [ 4 ],
+            orderData: [ 4, 0 ]
+        } ]
+    } );
+} );
+    
+</script>
+
+
+<table id="questiontable" class="display" style="width:100%">
+        <thead>
+            <tr class="text-center">
+                <th>title</th>
+                <th>date</th>
+                <th>answers</th>
+                <th>upvote</th>
+                <th>downvote</th>
+                <% if(auth) { %>
+                <% if(account) { %>
+                <th>delete</th>
+                <% } %>
+                <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% user.question.forEach(function(question) { %>
+            <tr class="text-center">
+                <td><a href="/api/questions/<%= question._id %>/<%= user.username %>/<%= question.text %>" style="text-decoration: none;"><%= question.text %></a></td>
+                <td><span style="font-size: 12px;"><%= question.date %></span></td>
+                <td><%= question.answers.length %></td>
+                <td><%= question.upvotes.length %></td>
+                <td><%= question.downvotes.length %></td>
+                <% if(auth) { %>
+                <% if(account) { %>
+                <td>
+                    <form action="/api/questions/deletequestion/<%= question._id %>/<%= user.username %>" method="POST">
+                        <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+                <% } %>
+                <% } %>
+            </tr>
+           <% }) %>
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="container-fluid mt-5" style="min-height: 70vh">
     <div class="row mt-4 mb-4 px-4">
         <div class="col-md-12 mt-1">
             <center>
@@ -26,7 +103,6 @@
     </div>
     <hr class="hr">
 
-    <% if(!sort) { %>
     <% user.question.forEach(function(question) { %>
     <div class="row mb-2 px-2 py-1">
         <div class="col-md-8">
@@ -43,7 +119,7 @@
                         <div class="col-12">
                             <a href="/api/questions/<%= question._id %>/<%= user.username %>/<%= question.text %>" style="text-decoration: none">
                                 <h5 style="cursor: pointer;font-weight: bold" id="quesText"
-                                    class="h4 text-dark mt-2">
+                                    class="h5 text-dark mt-2">
                                     <%= question.text %>
                                 </h5>
                             </a>
@@ -97,81 +173,8 @@
     </div>
     <hr class="hr">
     <% }) %>
-    <% } %>
 
-    <% if(sort) { %>
-    <% question.forEach(function(question) { %>
-    <div class="row mb-2 px-2 py-1">
-        <div class="col-md-8">
-            <div class="row mb-1 bg-light rounded">
-                <div class="col-12">
-                    <span class=" float-right p-2 text-primary" style="font-size: 12px;">
-                        <%= question.date %>
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="/api/questions/<%= question._id %>/<%= user.username %>/<%= question.text %>" style="text-decoration: none">
-                                <h5 style="cursor: pointer;font-weight: bold" id="quesText"
-                                    class="h4 text-dark mt-2">
-                                    <%= question.text %>
-                                </h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="row">
-                <div class="col-3 text-center">
-                    <span style="font-size: 13px;">answers</span>
-                    <hr class="hr">
-                    <span style="font-weight:600; font-size: 18px; color: #6A737C;">
-                        <%= question.answers.length %>
-                    </span>
-                </div>
-                <div class="col-3 text-center">
-                    <span style="font-size: 13px;">vote up</span>
-                    <hr class="hr">
-                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw d-none" id="loader<%= question._id %>" style="color: #2F363F"></i>
-                    <span class="sr-only">Loading...</span>
-                    <span id="<%= question._id %>"
-                         style="font-weight:600; font-size: 18px; color: #6A737C;">
-                        <%= question.upvotes.length %>
-                    </span>
-                </div>
-                <div class="col-3 text-center">
-                    <span style="font-size: 13px;">vote down</span>
-                    <hr class="hr">
-                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw d-none" id="loader<%= question._id %>" style="color: #2F363F"></i>
-                    <span class="sr-only">Loading...</span>
-                    <span id="<%= question._id %>"
-                         style="font-weight:600; font-size: 18px;color: #6A737C;">
-                        <%= question.downvotes.length %>
-                    </span>
-                </div>
-               <% if(auth) { %>
-                    <% if(account) { %>
-                        <div class="col-3 text-center">
-                                <span style="font-size: 13px;">delete</span>
-                                <hr class="hr">
-                                <form action="/api/questions/deletequestion/<%= question._id %>/<%= user.username %>" method="POST">
-                                    <button class="btn btn-sm btn-danger" type="submit">Delete</button>
-                                  </form>
-                        </div>
-                    <% } %>
-                <% } %>
-            </div>
-        </div>
-    </div>
-    <hr class="hr">
-    <% }) %>
-    <% } %>
-
-</div>
+</div> -->
+</body>
 <%- include('../../footer') %>
 <script src="/js/profile/question/viewquestion.js"></script>
