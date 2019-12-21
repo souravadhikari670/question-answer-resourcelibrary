@@ -97,6 +97,139 @@ router.post('/registration', (req, res) => {
             console.log(error)
         })
 })
+router.post('/registration/organization', (req, res) => {
+
+    // fetch(`https://app.verify-email.org/api/v1/Wz4BIxNrNkfcWPCANcn8CZ4QMSXtfHrkCengOxacz1tVJWfDjg/verify/${req.body.email}`)
+    //     .then((responce) => {
+    //         responce.json()
+    //             .then((result) => {
+    //                 console.log(result)
+    //                 if (result.status == 1) {
+
+    User.findOne({
+            email: req.body.email
+        })
+        .then((user) => {
+            if (user) {
+                res.send({
+                    email: 'exist'
+                })
+            } else {
+                User.findOne({
+                        username: req.body.username
+                    })
+                    .then((user) => {
+                        if (user) {
+                            res.send({
+                                username: 'exist'
+                            })
+                        } else {
+
+                            //random code generator
+                            var code = randomString.generate(8)
+                            //send mail
+                            sendmail.setApiKey("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");
+                            const msg = {
+                                to: req.body.email,
+                                from: 'easytoprogram670@gmail.com',
+                                subject: 'ScholLife Activation Code',
+                                html: '<h1>Thanks for choosing schoLife...</h1> <br><br>Activation code : ' + code,
+                            };
+                            sendmail.send(msg)
+                                .then(() => {
+
+                                    if (req.body.category == "Journal") {
+
+                                        let newUser = new User({
+                                            accountType: req.body.accountType,
+                                            name: req.body.name,
+                                            username: req.body.username,
+                                            email: req.body.email,
+                                            password: req.body.password,
+                                            affiliation: req.body.affiliation,
+                                            country: req.body.country,
+                                            type: req.body.type,
+                                            impactFactor: req.body.impactfactor,
+                                            hIndex: req.body.hindex,
+                                            category: req.body.category,
+                                            jCategory : req.body.jCategory.split(','),
+                                            activation_code: code,
+                                           
+                                        })
+                                        // if (typeof req.body.jCategory !== undefined) {
+                                        //     newUser.jCategory = req.body.jCategory.split(',')
+                                        // }
+                                        //encrypt password
+                                        bcrypt.genSalt(10, function (err, salt) {
+                                            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                                if (err) throw err
+                                                newUser.password = hash
+                                                newUser.save()
+                                                    .then((user) => {
+                                                        if (user) {
+                                                            sessionStorage.setItem('email', user.email)
+                                                            res.send({
+                                                                success: true
+                                                            })
+                                                        }
+                                                    })
+                                                    .catch((error) => {
+                                                        console.log(error)
+                                                    })
+                                            });
+                                        });
+                                    } else {
+
+                                        let newUser = new User({
+                                            accountType: req.body.accountType,
+                                            name: req.body.name,
+                                            username: req.body.username,
+                                            email: req.body.email,
+                                            password: req.body.password,
+                                            affiliation: req.body.affiliation,
+                                            country: req.body.country,
+                                            type: req.body.type,
+                                            category: req.body.category,
+                                            activation_code: code,
+                                        })
+                                       
+                                        //encrypt password
+                                        bcrypt.genSalt(10, function (err, salt) {
+                                            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                                if (err) throw err
+                                                newUser.password = hash
+                                                newUser.save()
+                                                    .then((user) => {
+                                                        if (user) {
+                                                            sessionStorage.setItem('email', user.email)
+                                                            res.send({
+                                                                success: true
+                                                            })
+                                                        }
+                                                    })
+                                                    .catch((error) => {
+                                                        console.log(error)
+                                                    })
+                                            });
+                                        });
+                                    }
+
+
+                                })
+                                .catch((error) => {
+                                    console.log(error)
+                                })
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+})
 
 
 //route for ligin

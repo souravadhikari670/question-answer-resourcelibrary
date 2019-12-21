@@ -1,0 +1,59 @@
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12">
+            <form id="formvideoupload" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="videotitle"><strong>title</strong></label>
+                    <input type="text" name="videotitle" id="videotitle" required
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="videodescription"><strong>Description</strong></label>
+                    <textarea name="videodescription" required
+                        class="form-control" id="videodescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" name="uploadvideo" class="custom-file-input bg-dark"
+                            id="uploadvideofile" accept=".mp4" aria-describedby="videofile"
+                            required>
+                        <label class="custom-file-label" id="uploadvideofilelabel"
+                            for="videofile">choose video file ( only mp4 file and size less than 10mb )</label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="topicVideoCategory">
+                            Select topic</label>
+                    </div>
+                    <select class="custom-select" id="topicVideoCategory" required>
+                        <option value="">choose topic</option>
+                        
+                        <option value=""></option>
+                     
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="videotag"><strong>tags : ( tags seperated by comma(,) )</strong></label>
+                    <input type="text" name="tag" id="videotag" required
+                       class="form-control" required>
+                </div>
+                <strong>video access by</strong>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="videopublic" name="videoaccess" value="public"
+                        class="custom-control-input" checked>
+                    <label class="custom-control-label" for="videopublic">Public</label>
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                    <input type="radio" id="videoprivate" name="videoaccess" value="private"
+                        class="custom-control-input">
+                    <label class="custom-control-label" for="videoprivate">Private</label>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" disabled id="btnvideoupload"
+                        type="submit">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

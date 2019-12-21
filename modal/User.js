@@ -42,9 +42,7 @@ const UserSchema = new Schema({
         type: String
     },
     jCategory:[{
-        title:{
-            type:String
-        }
+       type:String
     }],
     impactFactor:{
         type:String

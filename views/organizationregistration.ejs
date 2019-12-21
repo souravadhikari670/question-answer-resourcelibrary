@@ -58,8 +58,18 @@
                         </select>
                     </div>
                 </div>
-                <div id="ifJournal">
+                <div class="d-none" id="ifJournal">
                     <div class="row">
+                    
+                            <div class="col-md-6 my-3">
+                                <strong class="text-light">Impact Factor</strong>
+                                <input type="text" id="impactfactor2" name="impactfactor2" class="form-control">
+                            </div>
+                            <div class="col-md-6 my-3">
+                                <strong class="text-light">H-Index</strong>
+                                <input type="text" id="hindex2" name="hindex2" class="form-control">
+                            </div>
+                       
                         <div class="col-md-12 my-3">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input jCategory" id="SCI" value="SCI">
@@ -73,16 +83,6 @@
                                 <input type="checkbox" class="custom-control-input jCategory" id="SOPUS" value="SOPUS">
                                 <label class="custom-control-label text-light" for="SOPUS">SOPUS</label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 my-3">
-                            <strong class="text-light">Impact Factor</strong>
-                            <input type="text" id="impactfactor2" name="impactfactor2" class="form-control">
-                        </div>
-                        <div class="col-md-6 my-3">
-                            <strong class="text-light">H-Index</strong>
-                            <input type="text" id="hindex2" name="hindex2" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                 <div class="col-12 mt-3">
                     <div class="form-group mb-3">
                         <center>
-                            <button class="btn btn-success btn-lg btn-block" id="btnSignup"
+                            <button class="btn btn-success btn-lg btn-block" id="btnOrganizationSignup"
                                 onclick="createOrganizationAccount(event)">
                                 Create Account
                             </button>

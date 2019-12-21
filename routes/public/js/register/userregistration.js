@@ -113,7 +113,7 @@ function createUserAccount(event) {
                     } else {
                         Swal.fire({
                             type: 'warning',
-                            html: 'please type a valid email'
+                            html: 'email format does not valid'
                         })
                     }
                 } else {
