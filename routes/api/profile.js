@@ -342,7 +342,7 @@ router.post('/sendmessage',
     }),
     (req, res) => {
 
-        sendmail.setApiKey("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");
+        sendmail.setApiKey(api key);
         const msg = {
             to: req.body.to,
             from: req.user.email,
