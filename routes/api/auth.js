@@ -46,7 +46,7 @@ router.post('/registration', (req, res) => {
                             sendmail.setApiKey(api key);
                             const msg = {
                                 to: req.body.email,
-                                from: 'easytoprogram670@gmail.com',
+                                from: 'email',
                                 subject: 'ScholLife Activation Code',
                                 html: '<h1>Thanks for choosing schoLife...</h1> <br><br>Activation code : ' + code,
                             };
@@ -128,10 +128,10 @@ router.post('/registration/organization', (req, res) => {
                             //random code generator
                             var code = randomString.generate(8)
                             //send mail
-                            sendmail.setApiKey("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");
+                            sendmail.setApiKey(api key);
                             const msg = {
                                 to: req.body.email,
-                                from: 'easytoprogram670@gmail.com',
+                                from: 'email',
                                 subject: 'ScholLife Activation Code',
                                 html: '<h1>Thanks for choosing schoLife...</h1> <br><br>Activation code : ' + code,
                             };
@@ -373,10 +373,10 @@ router.post('/resendcode', (req, res) => {
                 const recode = user.activation_code
                 const email = user.email
                 //send mail
-                sendmail.setApiKey("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");
+                sendmail.setApiKey(api key);
                 const msg = {
                     to: email,
-                    from: 'easytoprogram670@gmail.com',
+                    from: 'email',
                     subject: 'ScholLife Activation Code',
                     html: '<strong>Thanks for choosing schollife...</strong> <br><br>Activation code : ' + recode,
                 };
