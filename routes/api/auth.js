@@ -43,7 +43,7 @@ router.post('/registration', (req, res) => {
                             //random code generator
                             var code = randomString.generate(8)
                             //send mail
-                            sendmail.setApiKey("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");
+                            sendmail.setApiKey(api key);
                             const msg = {
                                 to: req.body.email,
                                 from: 'easytoprogram670@gmail.com',
