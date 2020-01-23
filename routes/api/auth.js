@@ -14,13 +14,6 @@ const User = require('../../modal/User')
 
 router.post('/registration', (req, res) => {
 
-    // fetch(`https://app.verify-email.org/api/v1/Wz4BIxNrNkfcWPCANcn8CZ4QMSXtfHrkCengOxacz1tVJWfDjg/verify/${req.body.email}`)
-    //     .then((responce) => {
-    //         responce.json()
-    //             .then((result) => {
-    //                 console.log(result)
-    //                 if (result.status == 1) {
-
     User.findOne({
             email: req.body.email
         })
@@ -98,13 +91,7 @@ router.post('/registration', (req, res) => {
         })
 })
 router.post('/registration/organization', (req, res) => {
-
-    // fetch(`https://app.verify-email.org/api/v1/Wz4BIxNrNkfcWPCANcn8CZ4QMSXtfHrkCengOxacz1tVJWfDjg/verify/${req.body.email}`)
-    //     .then((responce) => {
-    //         responce.json()
-    //             .then((result) => {
-    //                 console.log(result)
-    //                 if (result.status == 1) {
+                if (result.status == 1) {
 
     User.findOne({
             email: req.body.email
